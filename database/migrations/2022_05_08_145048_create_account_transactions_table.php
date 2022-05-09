@@ -17,11 +17,11 @@ class CreateAccountTransactionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('account_id');
             $table->unsignedBigInteger('investor_id');
-            $table->number('transaction_reference');
+            $table->integer('transaction_reference');
             $table->string('transaction_description');
             $table->date('transaction_date');
-            $table->decimal('debit_amount');
-            $table->decimal('credit_amount');
+            $table->decimal('debit_amount', 15);
+            $table->decimal('credit_amount', 15);
 
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->foreign('investor_id')->references('id')->on('investors');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvestorsTable extends Migration
+class CreateRegionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateInvestorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('investors', function (Blueprint $table) {
+        Schema::create('regions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('mobile_number')->unique();
             $table->unsignedBigInteger('country_id');
 
             $table->foreign('country_id')->references('id')->on('countries');
@@ -32,6 +30,6 @@ class CreateInvestorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('investors');
+        Schema::dropIfExists('regions');
     }
 }
