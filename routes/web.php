@@ -17,9 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [App\Http\COntrollers\DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('countries', App\Http\COntrollers\CountryController::class);
 Route::resource('stages', App\Http\COntrollers\StageController::class);
