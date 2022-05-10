@@ -10,5 +10,17 @@ class Account extends Model
     // use SoftDeletes;
 
     protected $guarded = [ 'id' ];
-    //
+    
+
+    public function stage(){
+        return $this->belongsTo(Stage::class);
+    }
+
+    public function investor(){
+        return $this->belongsTo(Investor::class);
+    }
+
+    public function transactions(){
+        return $this->hasMany(AccountTransaction::class);
+    }
 }

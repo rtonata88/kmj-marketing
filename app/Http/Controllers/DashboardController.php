@@ -18,7 +18,11 @@ class DashboardController extends Controller
         return view('dashboard', compact('noticeMessages'));
     }
 
-    public function getDashboardNotices($user){
+    private function getInvestorAccounts($user){
+        
+    }
+
+    private function getDashboardNotices($user){
         return [
             "userAccountNotices" => $this->userAccountNotice($user)
         ];
