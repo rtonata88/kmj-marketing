@@ -16,7 +16,7 @@ class CreateAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->integer('account_number')->unique();
-            $table->integer('referrer_account_id');
+            $table->integer('referrer_investor_id');
             $table->integer('status')->default(0);
             $table->unsignedBigInteger('investor_id');
 

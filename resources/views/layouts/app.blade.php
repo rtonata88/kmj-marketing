@@ -50,22 +50,17 @@
         </div>
         <ul class="c-sidebar-nav">
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/home">
+                <a class="c-sidebar-nav-link" href="/dashboard">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-speedometer')}}"></use>
                     </svg> Dashboard
                 </a>
             </li>
             <li class="c-sidebar-nav-title">ACCOUNT MANAGEMENT</li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/students">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/accounts">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-group')}}"></use>
-                    </svg> Accounts</a>
-            </li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/fees">
-                    <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-money')}}"></use>
-                    </svg> Account Statement</a>
+                    </svg>My Accounts</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/subjects">
                     <svg class="c-sidebar-nav-icon">

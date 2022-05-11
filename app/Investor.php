@@ -11,9 +11,9 @@ class Investor extends Model
 
     protected $guarded = [ 'id' ];
 
-    protected $fillable = ['name', 'mobile_number', 'email', 'town_id', 'region_id', 'country_id'];
+    protected $fillable = ['name', 'mobile_number', 'email', 'town_id', 'region_id', 'country_id', 'user_id'];
     
-    public function accounts(){
-        return $this->hasMany(Account::class);
+    public function account(){
+        return $this->hasOne(Account::class);
     }
 }

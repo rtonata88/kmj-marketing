@@ -13,7 +13,7 @@
 
     <div class="col-md-12">
         <p>
-            <h5>Hi, {{Auth::user()->name}}</h5>
+        <h5>Hi, {{Auth::user()->name}}</h5>
         </p>
         @if($noticeMessages["userAccountNotices"])
 
@@ -30,87 +30,51 @@
         @endforeach
         @endif
     </div>
-    <div class="col-6 col-lg-3">
+    @foreach($accounts as $account)
+    <div class="col-md-6 col-sm-12">
         <div class="card">
             <div class="card-body p-3 d-flex align-items-center">
                 <div class="bg-primary p-3 mfe-3">
-                    <svg class="c-icon c-icon-xl">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-education')}}"></use>
-                    </svg>
-                </div>
-                <div>
-                    <div class="text-value text-primary">3</div>
-                    <div class="text-muted text-uppercase font-weight-bold small">Registered Learners</div>
-                </div>
-            </div>
-            <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="/student/reports"><span class="small font-weight-bold">View More</span>
-                    <svg class="c-icon">
-                        <use xlink:href="#cil-chevron-right"></use>
-                    </svg></a>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-->
-    <div class="col-6 col-lg-3">
-        <div class="card">
-            <div class="card-body p-3 d-flex align-items-center">
-                <div class="bg-info p-3 mfe-3">
-                    <svg class="c-icon c-icon-xl">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-money')}}"></use>
-                    </svg>
-                </div>
-                <div>
-                    <div class="text-value text-info">N$0</div>
-                    <div class="text-muted text-uppercase font-weight-bold small">Invoices & Debits</div>
-                </div>
-            </div>
-            <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="/accounting/reports"><span class="small font-weight-bold">View More</span>
-                    <svg class="c-icon">
-                        <use xlink:href="#cil-chevron-right"></use>
-                    </svg></a></div>
-        </div>
-    </div>
-    <!-- /.col-->
-    <div class="col-6 col-lg-3">
-        <div class="card">
-            <div class="card-body p-3 d-flex align-items-center">
-                <div class="bg-warning p-3 mfe-3">
                     <svg class="c-icon c-icon-xl">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-bank')}}"></use>
                     </svg>
                 </div>
                 <div>
-                    <div class="text-value text-info">N$0</div>
-                    <div class="text-muted text-uppercase font-weight-bold small">Payments & Credits</div>
+                    <div class="text-value text-primary">N${{$account["balance"]}}</div>
+                    <div class="text-muted text-uppercase font-weight-bold"><strong>Account Number:</strong> {{$account["account_number"]}}</div>
+                    <div class="text-muted text-uppercase font-weight-bold"><strong>Status: </strong>{{$account["status"]}}</div>
+                    <div class="text-muted text-uppercase font-weight-bold">
+                        @switch($account["stage"])
+                        @case("Stage 1")
+                        <h6><span class="badge badge-secondary">{{$account["stage"]}}</span></h6>
+                        @break
+                        @case("Stage 2")
+                        <h6><span class="badge badge-info">{{$account["stage"]}}</span></h6>
+                        @break
+                        @case("Stage 3")
+                        <h6><span class="badge badge-warning">{{$account["stage"]}}</span></h6>
+                        @break
+                        @case("Stage 4")
+                        <h6><span class="badge badge-primary">{{$account["stage"]}}</span></h6>
+                        @break
+                        @case("Stage 5")
+                        <h6><span class="badge badge-success">{{$account["stage"]}}</span></h6>
+                        @break
+                        @case("Stage 6")
+                        <h6><span class="badge badge-danger">{{$account["stage"]}}</span></h6>
+                        @break
+                        @endswitch
+                    </div>
                 </div>
             </div>
-            <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="/accounting/reports"><span class="small font-weight-bold">View More</span>
-                    <svg class="c-icon">
-                        <use xlink:href="#cil-chevron-right"></use>
-                    </svg></a></div>
-        </div>
-    </div>
-    <!-- /.col-->
-    <div class="col-6 col-lg-3">
-        <div class="card">
-            <div class="card-body p-3 d-flex align-items-center">
-                <div class="bg-danger p-3 mfe-3">
-                    <svg class="c-icon c-icon-xl">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-dollar')}}"></use>
-                    </svg>
-                </div>
-                <div>
-                    <div class="text-value text-info">N$0</div>
-                    <div class="text-muted text-uppercase font-weight-bold small">Outstanding Amount</div>
-                </div>
+            <div class="card-footer px-3 py-2">
+                <a class="text-muted d-flex justify-content-between align-items-center" href="/student/reports"><span class="small font-weight-bold">
+                        Account Statement
+                </a></span>
             </div>
-            <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="/accounting/reports"><span class="small font-weight-bold">View More</span>
-                    <svg class="c-icon">
-                        <use xlink:href="#cil-chevron-right"></use>
-                    </svg></a></div>
         </div>
     </div>
-    <!-- /.col-->
+    @endforeach
 </div>
 
 @push('highcharts-css')

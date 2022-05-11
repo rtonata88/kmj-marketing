@@ -8,6 +8,7 @@ use App\Http\Requests\AccountTransactionStoreRequest;
 use JunaidQadirB\Cray\Traits\RedirectsWithFlash;
 use Illuminate\Routing\Controller;
 
+use Auth;
 class AccountTransactionController extends Controller
 {
     use RedirectsWithFlash;
@@ -19,7 +20,10 @@ class AccountTransactionController extends Controller
      */
     public function index()
     {
-        $accountTransactions = AccountTransaction::paginate(15);
+        $investor = Auth::user()->investor;
+
+        $accountTransactions = AccountTransaction::where('investor_id',$investor->id)->get();
+
         return view('.account-transactions.index', compact('accountTransactions'));
     }
 

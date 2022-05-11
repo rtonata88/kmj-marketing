@@ -24,4 +24,8 @@ Route::resource('stages', App\Http\COntrollers\StageController::class);
 Route::resource('stage-rewards', App\Http\COntrollers\StageRewardController::class);
 Route::resource('other-settings', App\Http\COntrollers\OtherSettingController::class);
 
+Route::resource('accounts', App\Http\COntrollers\AccountController::class);
+
+Route::get('/transactions', [App\Http\Controllers\AccountTransactionController::class, 'index'])->name('transactions');
+
 require __DIR__.'/auth.php';

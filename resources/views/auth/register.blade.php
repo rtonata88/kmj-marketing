@@ -16,23 +16,28 @@
     {{ csrf_field() }}
     <div class="col-md-12">
         <div class="form-group">
-            {{Form::label('referrer_account', 'Referrer account number')}}
-            {{Form::text('referrer_account', null, ['class' => 'form-control'])}}
+            {{Form::label('referrer_username', 'Referrer username')}}
+            {{Form::text('referrer_username', null, ['class' => 'form-control'])}}
         </div>
     </div>
     <div class="col-md-12">
         <div class="form-group">
-            {{Form::label('name', 'Fullnames (Name and Surname)')}}
+            {{Form::label('name', 'Your Fullnames (Name and Surname)')}}
             {{Form::text('name', null, ['class' => 'form-control'])}}
         </div>
     </div>
     <div class="col-md-12">
         <div class="form-group">
-            {{Form::label('mobile_number', 'Mobile number')}}
+            {{Form::label('mobile_number', 'Your Mobile number')}}
             {{Form::text('mobile_number', null, ['class' => 'form-control'])}}
         </div>
     </div>
-
+    <div class="col-md-12">
+        <div class="form-group">
+            {{Form::label('email', 'Email address')}}
+            {{Form::email('email', null, ['class' => 'form-control'])}}
+        </div>
+    </div>
     <div class="col-md-12">
         <div class="form-group">
             {{Form::label('country_id', 'Country')}}
@@ -57,8 +62,8 @@
     <hr>
     <div class="col-md-12">
         <div class="form-group">
-            {{Form::label('email', 'Email address')}}
-            {{Form::email('email', null, ['class' => 'form-control'])}}
+            {{Form::label('username', 'Username')}}
+            {{Form::text('username', null, ['class' => 'form-control'])}}
         </div>
     </div>
     <div class="col-md-12">

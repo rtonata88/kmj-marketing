@@ -16,8 +16,8 @@ class CreateInvestorsTable extends Migration
         Schema::create('investors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('mobile_number')->unique();
+            $table->string('email');
+            $table->string('mobile_number');
             $table->unsignedBigInteger('country_id');
 
             $table->foreign('country_id')->references('id')->on('countries');

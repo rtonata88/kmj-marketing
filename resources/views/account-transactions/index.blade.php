@@ -1,77 +1,54 @@
 @extends('layouts.app')
-
-{{--
-@section('sidebar')
-    @if(auth()->check())
-        // include sidebar here
-    @endif
-@endsection
---}}
-
-@section('title')
-    Account Transactions
+@section('breadcrumb')
+<div class="c-subheader px-3">
+    <!-- Breadcrumb-->
+    <ol class="breadcrumb border-0 m-0">
+        <li class="breadcrumb-item">Management</li>
+        <li class="breadcrumb-item"><a href="/invoices">My Account</a></li>
+        <li class="breadcrumb-item active">Transactions</li>
+        <!-- Breadcrumb Menu-->
+    </ol>
+</div>
 @endsection
 
 @section('content')
-    <div class="row my-5">
-        <div class="col text-left">
-            <h2>Account Transactions</h2>
-        </div>
-        <div class="col text-right">
-            <div class="btn-toolbar" role="toolbar" aria-label="account-transactions Context Toolbar">
-                <div class="btn-group btn-group-sm ml-auto" role="group" aria-label="">
-                    <a href="{{route('account-transactions.create')}}" class="btn btn-outline-primary">Add</a>
-                </div>
+<div class="row">
+    <div class="col-md-12 col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>Account transactions</strong> | <a href="{{route('accounts.index')}}"> Back</a>
+            </div>
+            <div class="card-body">
+
+                <table class="table table-responsive-sm table-bordered table-sm no-wrap" style="width:100%">
+                    <tr>
+                        <th>Transaction Reference</th>
+                        <th>Transaction Date</th>
+                        <th>Description</th>
+                        <th>Debit</th>
+                        <th>Credit</th>
+                        <th>Balance</th>
+                    </tr>
+                    <?php
+                    $balance = 0;
+                    ?>
+                    @foreach($accountTransactions as $transaction)
+                    <?php
+                    $balance = ($transaction->debit_amount > 0) ? $balance += $transaction->debit_amount : $balance -= $transaction->credit_amount
+                    ?>
+                    <tr>
+                        <td>{{$transaction->transaction_reference}}</td>
+                        <td>{{$transaction->transaction_date}}</td>
+                        <td>{{$transaction->transaction_description}}</td>
+                        <td>{{number_format($transaction->debit_amount, 2, '.',',')}}</td>
+                        <td>{{number_format($transaction->credit_amount, 2, '.',',')}}</td>
+                        <td>{{number_format($balance, 2, '.',',')}}</td>
+                    </tr>
+                    @endforeach
+                </table>
             </div>
         </div>
     </div>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th class="text-right">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            @forelse($accountTransactions as $accountTransaction)
-                <tr>
-                    <td>{{$accountTransaction->id}}</td>
-                    <td>{{$accountTransaction->name}}</td>
-                    <td>{{$accountTransaction->description}}</td>
-                    <td>{{$accountTransaction->status}}</td>
-                    <td class="text-right">
-                        <div class="btn-group btn-group-sm">
-                            <a href="{{route('account-transactions.edit', $accountTransaction->id)}}" type="button"
-                               class="btn btn-primary">Edit</a>
-                            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                <button type="submit" class="dropdown-item text-danger"
-                                        data-toggle="modal" data-target="#delete{{className($accountTransaction)}}Modal"
-                                        data-id="{{$accountTransaction->id}}"
-                                        href="{{route('account-transactions.edit', $accountTransaction->id)}}">Delete
-                                </button>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="5"><p class="text-center mb-0">No Account Transaction to show. <a
-                                    class="btn btn-primary btn-sm rounded-0"
-                                    href="{{route('account-transactions.create')}}">Add One</a></p></td>
-                </tr>
-            @endforelse
-            </tbody>
-        </table>
-    </div>
-    {{ $accountTransactions->links() }}
-    @include('account-transactions.modals.delete',['id' => "deleteAccountTransactionModal"])
+</div>
+{!! Form::close() !!}
 @endsection
-

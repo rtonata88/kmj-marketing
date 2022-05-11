@@ -47,30 +47,31 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        
+        if(isset($request->referrer_username)){
+            $referrerInvestorId = $this->getReferrerInvestorId($request->referrer_username);
 
-        if(isset($request->referrer_account)){
-            $referrerAccountId = $this->getReferrerAccountId($request);
-
-            if($referrerAccountId == 0){
-                return back()->withInput()->withErrors(["referrer_account" => "Invalid account number provided, please enter a valid account number."]);
+            if(is_null($referrerInvestorId)){
+                return back()->withInput()->withErrors(["referrer_username" => "Invalid referrer username provided."]);
             }
 
         } else {
-            $referrerAccountId = 0;
+            $referrerInvestorId = 0;
         }
         
-        $investor = $this->createInvestorProfile($request);
-
-        $this->createInvestorAccount($investor, $referrerAccountId);
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'username' => $request->username,
             'password' => Hash::make($request->password),
         ]);
+
+        $investor = $this->createInvestorProfile($user->id, $request);
+
+        $this->createInvestorAccount($investor, $referrerInvestorId);
 
         event(new Registered($user));
 
@@ -79,30 +80,31 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
-    private function createInvestorProfile($request){
-        return Investor::create($request->all());
+    private function createInvestorProfile($user_id, $request){
+        return Investor::create(array_merge($request->all(), ['user_id' => $user_id]));
     }
 
-    private function createInvestorAccount($investor, $referrerAccountId){
+    private function createInvestorAccount($investor, $referrerInvestorId){
         return Account::create(
             [
-                "referrer_account_id"  => $referrerAccountId,
+                "referrer_investor_id"  => $referrerInvestorId,
                 "investor_id"       => $investor->id,
                 "account_number"    => $this->generateAccountNumber()
             ]
         );
     }
 
-    private function getReferrerAccountId($request){
-        $referrerAccount = Account::select('id')
-                                    ->where('account_number', $request->referrer_account)
-                                    ->where('status', 1)
-                                    ->first();
+    private function getReferrerInvestorId($referrer_username){
         
-        if($referrerAccount){
-            return  $referrerAccount->id;
+        $referrerUser = User::with('investor')
+                            ->select('id')
+                            ->where('username', $referrer_username)
+                            ->first();
+        
+        if($referrerUser){
+            return  $referrerUser->investor->id;
         } else {
-            return 0;
+            return null;
         }
     }
 
