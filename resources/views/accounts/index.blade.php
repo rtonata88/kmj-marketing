@@ -17,14 +17,14 @@
             <div class="card-body p-3 d-flex align-items-center">
                 <div class="bg-primary p-3 mfe-3">
                     <svg class="c-icon c-icon-xl">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-bank')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-wallet')}}"></use>
                     </svg>
                 </div>
                 <div>
                     <div class="text-value text-primary">N${{$account["balance"]}}</div>
-                    <div class="text-muted text-uppercase font-weight-bold"><strong>Account Number:</strong> {{$account["account_number"]}}</div>
+                    <div class="text-muted text-uppercase font-weight-bold">Profit Account</div>
                     <div class="text-muted text-uppercase font-weight-bold"><strong>Status: </strong>{{$account["status"]}}</div>
-                    <div class="text-muted text-uppercase font-weight-bold">
+                    <!-- <div class="text-muted text-uppercase font-weight-bold">
                         @switch($account["stage"])
                         @case("Stage 1")
                         <h6><span class="badge badge-secondary">{{$account["stage"]}}</span></h6>
@@ -45,7 +45,7 @@
                         <h6><span class="badge badge-danger">{{$account["stage"]}}</span></h6>
                         @break
                         @endswitch
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="card-footer px-3 py-2">
@@ -54,7 +54,35 @@
                 </a></span>
             </div>
         </div>
+        <div class="alert alert-warning">
+            @if($account["status"] == "Not active")
+            Your account is not yet active. Please email your proof of payment to the Administrator.
+            @endif
+        </div>
     </div>
     @endforeach
+    <div class="col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-body p-3 d-flex align-items-center">
+                <div class="bg-info p-3 mfe-3">
+                    <svg class="c-icon c-icon-xl">
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-bank')}}"></use>
+                    </svg>
+                </div>
+                <div>
+                    <div class="text-value text-info">N$0</div>
+                    <div class="text-muted text-uppercase font-weight-bold">Registration Credit</div>
+                    <div class="text-muted text-uppercase font-weight-bold"><strong>Status: </strong>Active</div>
+                </div>
+            </div>
+            <div class="card-footer px-3 py-2">
+                <a class="text-muted d-flex justify-content-between align-items-center" href="/registration-transactions/{{$investor->id}}">
+                    <span class="small font-weight-bold">
+                        Account Statement/Transactions
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

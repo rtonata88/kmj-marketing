@@ -27,7 +27,9 @@ class AccountController extends Controller
 
         $accounts = $this->getInvestorAccounts($user);
 
-        return view('.accounts.index', compact('accounts'));
+        $investor =  $user->investor;
+
+        return view('.accounts.index', compact('accounts', 'investor'));
     }
 
     private function getInvestorAccounts($user): array

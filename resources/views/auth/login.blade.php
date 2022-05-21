@@ -6,6 +6,15 @@
 </div>
 
 <p class="text-muted text-center">Sign In to your account</p>
+@if($errors->any())
+<ul class="text-danger">
+  @foreach($errors->all() as $error)
+  <li>
+    {{$error}}
+  </li>
+  @endforeach
+</ul>
+@endif
 <form action="{{ route('login') }}" method="post" class="form-horizontal new-lg-form" id="loginform">
   {{ csrf_field() }}
   <div class="input-group mb-3">
@@ -13,10 +22,10 @@
         <svg class="c-icon">
           <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-user')}}"></use>
         </svg></span></div>
-    <input class="form-control" type="text" required="" name="email" placeholder="Email">
-    @if ($errors->has('email'))
+    <input class="form-control" type="text" required="" name="username" placeholder="Username">
+    @if ($errors->has('username'))
     <span class="help-block text-danger">
-      <strong>{{ $errors->first('email') }}</strong>
+      <strong>{{ $errors->first('username') }}</strong>
     </span>
     @endif
   </div>

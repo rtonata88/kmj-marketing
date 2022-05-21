@@ -24,7 +24,7 @@ class AccountTransactionController extends Controller
 
         $accountTransactions = AccountTransaction::where('investor_id',$investor->id)->get();
 
-        return view('.account-transactions.index', compact('accountTransactions'));
+        return view('.account-transactions.profit-transactions', compact('accountTransactions'));
     }
 
     /**

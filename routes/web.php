@@ -25,6 +25,9 @@ Route::resource('stage-rewards', App\Http\COntrollers\StageRewardController::cla
 Route::resource('other-settings', App\Http\COntrollers\OtherSettingController::class);
 
 Route::resource('accounts', App\Http\COntrollers\AccountController::class);
+Route::resource('transfer', App\Http\COntrollers\TransferController::class);
+
+Route::get('/registration-transactions/{investor_id}', [App\Http\COntrollers\RegistrationCreditController::class, 'statement']);
 
 Route::get('/transactions', [App\Http\Controllers\AccountTransactionController::class, 'index'])->name('transactions');
 

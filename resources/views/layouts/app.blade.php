@@ -38,9 +38,6 @@
 
     <!-- summernotes CSS -->
     <link href="{{asset('bower_components/summernote/summernote.css')}}" rel="stylesheet" />
-
-    @stack('highcharts-css')
-
 </head>
 
 <body class="c-app">
@@ -66,6 +63,11 @@
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
                     </svg> Withdrawal Requests</a>
+            </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/transfer">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                    </svg> Transfers</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/subjects">
                     <svg class="c-sidebar-nav-icon">
@@ -210,8 +212,7 @@
 
     <!-- end - This is for export functionality only -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{asset('js/peaceapp.js')}}"></script>
-    <script src="{{asset('js/charts.js')}}"></script>
+   
 
     <!--[if IE]><!-->
     <script src="{{asset('new/node_modules/@coreui/icons/js/svgxuse.min.js')}}"></script>
@@ -224,11 +225,7 @@
     <script src="{{asset('assets/js/datatables.js')}}"></script>
     <script src="{{asset('new/js/main.js')}}"></script>
     @stack('dataTableScript')
-    @stack('profiles')
-    @stack('contactsJS')
-    @stack('googleCharts')
-    @stack('highcharts')
-    @stack('payments')
+    @stack('transfers')
 </body>
 
 </html>
