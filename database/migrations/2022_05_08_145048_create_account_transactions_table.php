@@ -15,7 +15,6 @@ class CreateAccountTransactionsTable extends Migration
     {
         Schema::create('account_transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('account_id');
             $table->unsignedBigInteger('investor_id');
             $table->integer('transaction_reference');
             $table->string('transaction_description');
@@ -23,7 +22,6 @@ class CreateAccountTransactionsTable extends Migration
             $table->decimal('debit_amount', 15);
             $table->decimal('credit_amount', 15);
 
-            $table->foreign('account_id')->references('id')->on('accounts');
             $table->foreign('investor_id')->references('id')->on('investors');
             $table->timestamps();
         });

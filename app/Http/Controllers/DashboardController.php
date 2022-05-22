@@ -11,6 +11,10 @@ use Auth;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         $user = Auth::user();
 
@@ -23,26 +27,21 @@ class DashboardController extends Controller
 
     private function getInvestorAccounts($user): array{
 
-        $investor = Investor::with('account')->where('user_id', '=', $user->id)->first();
-
-        $account = $investor->account;
-
+        $investor = Investor::where('user_id', '=', $user->id)->first();
         $account_info = array();
-
-        $account_balance = $this->calculateAccountBalance($account);
+        $account_balance = $this->calculateAccountBalance($investor);
 
         array_push($account_info, [
-            "account_number" => $account->account_number,
-            "status" => ($account->status == 0) ? "Not active" : "Active",
-            "stage" => $account->stage->name,
+            "status" => ($investor->status == 0) ? "Not active" : "Active",
+            "stage" => $investor->stage->name,
             "balance" => $account_balance
         ]);
 
         return $account_info;
     }
 
-    private function calculateAccountBalance($account) {
-        $transactions = $account->transactions;
+    private function calculateAccountBalance($investor) {
+        $transactions = $investor->transactions;
 
         $balance_info = 0;
 
@@ -66,11 +65,9 @@ class DashboardController extends Controller
 
         if($user->user_type === 'investor'){
 
-            $investor = Investor::with('account')->where('user_id', '=', $user->id)->first();
+            $investor = Investor::where('user_id', '=', $user->id)->first();
 
-            $account = $investor->account;
-
-            if ($account->status == 0) {
+            if ($investor->status == 0) {
                 array_push($notice, [
                     "message" => "Your account is not active. If you just signed up please send your proof of payment to the Administrator.",
                     "type" => "warning"

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStageIdToAccount extends Migration
+class CreateStageRequirementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class AddStageIdToAccount extends Migration
      */
     public function up()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-            $table->unsignedBigInteger('stage_id')->after('investor_id')->default(1);
+        Schema::create('stage_requirements', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('stage_id');
+            $table->integer('people');
+            $table->decimal('amount', 15, 2);
 
             $table->foreign('stage_id')->references('id')->on('stages');
+            $table->timestamps();
         });
     }
 
@@ -27,8 +31,6 @@ class AddStageIdToAccount extends Migration
      */
     public function down()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-            $table->dropColumn('stage_id');
-        });
+        Schema::dropIfExists('stage_requirements');
     }
 }

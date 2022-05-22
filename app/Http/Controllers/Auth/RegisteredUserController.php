@@ -52,14 +52,14 @@ class RegisteredUserController extends Controller
         ]);
         
         if(isset($request->referrer_username)){
-            $referrerInvestorId = $this->getReferrerInvestorId($request->referrer_username);
+            $referrerInvestor = $this->getReferrerInvestor($request->referrer_username);
 
-            if(is_null($referrerInvestorId)){
+            if(is_null($referrerInvestor)){
                 return back()->withInput()->withErrors(["referrer_username" => "Invalid referrer username provided."]);
             }
 
         } else {
-            $referrerInvestorId = 0;
+            $referrerInvestor = null;
         }
         
 
@@ -69,9 +69,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $investor = $this->createInvestorProfile($user->id, $request);
+        $investor = $this->createInvestorProfile($user->id, $request, $referrerInvestor);
 
-        $this->createInvestorAccount($investor, $referrerInvestorId);
+        if(!$investor){
+            $user->delete();
+            return back()->withInput()->withErrors(["referrer_username" => "The provided refferer username already has two people under them."]);
+        }
 
         event(new Registered($user));
 
@@ -80,21 +83,19 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
-    private function createInvestorProfile($user_id, $request){
-        return Investor::create(array_merge($request->all(), ['user_id' => $user_id]));
+    private function createInvestorProfile($user_id, $request, $referrerInvestor){
+        if(is_null($referrerInvestor)){
+            return Investor::create(array_merge($request->all(), ['user_id' => $user_id]));
+        } else {
+            if($referrerInvestor->children()->count() == 2){
+                return false;
+            } else {
+                return $referrerInvestor->children()->create(array_merge($request->all(), ['user_id' => $user_id]));
+            }
+        }
     }
 
-    private function createInvestorAccount($investor, $referrerInvestorId){
-        return Account::create(
-            [
-                "referrer_investor_id"  => $referrerInvestorId,
-                "investor_id"       => $investor->id,
-                "account_number"    => $this->generateAccountNumber()
-            ]
-        );
-    }
-
-    private function getReferrerInvestorId($referrer_username){
+    private function getReferrerInvestor($referrer_username){
         
         $referrerUser = User::with('investor')
                             ->select('id')
@@ -102,19 +103,9 @@ class RegisteredUserController extends Controller
                             ->first();
         
         if($referrerUser){
-            return  $referrerUser->investor->id;
+            return  $referrerUser->investor;
         } else {
             return null;
-        }
-    }
-
-    private function generateAccountNumber(){
-        $account_number = rand(100000, 999999);
-
-        if(Account::where('account_number', $account_number)->first()){
-            $this->generateAccountNumber();
-        } else {
-            return  $account_number;
         }
     }
 }

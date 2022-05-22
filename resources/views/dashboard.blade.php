@@ -41,7 +41,6 @@
                 </div>
                 <div>
                     <div class="text-value text-primary">N${{$account["balance"]}}</div>
-                    <div class="text-muted text-uppercase font-weight-bold"><strong>Account Number:</strong> {{$account["account_number"]}}</div>
                     <div class="text-muted text-uppercase font-weight-bold"><strong>Status: </strong>{{$account["status"]}}</div>
                     <div class="text-muted text-uppercase font-weight-bold">
                         @switch($account["stage"])

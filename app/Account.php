@@ -20,6 +20,10 @@ class Account extends Model
         return $this->belongsTo(Investor::class);
     }
 
+    public function children(){
+        return $this->hasMany(Account::class, 'referrer_investor_id');
+    }
+
     public function transactions(){
         return $this->hasMany(AccountTransaction::class);
     }

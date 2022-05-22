@@ -70,13 +70,13 @@
                     </svg>
                 </div>
                 <div>
-                    <div class="text-value text-info">N$0</div>
+                    <div class="text-value text-info">N${{number_format($available_registration_balance, 2, '.',',')}}</div>
                     <div class="text-muted text-uppercase font-weight-bold">Registration Credit</div>
                     <div class="text-muted text-uppercase font-weight-bold"><strong>Status: </strong>Active</div>
                 </div>
             </div>
             <div class="card-footer px-3 py-2">
-                <a class="text-muted d-flex justify-content-between align-items-center" href="/registration-transactions/{{$investor->id}}">
+                <a class="text-muted d-flex justify-content-between align-items-center" href="/transfer">
                     <span class="small font-weight-bold">
                         Account Statement/Transactions
                     </span>

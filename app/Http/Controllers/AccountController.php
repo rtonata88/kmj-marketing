@@ -7,6 +7,7 @@ use App\AccountTransaction;
 use App\Http\Requests\AccountUpdateRequest;
 use App\Http\Requests\AccountStoreRequest;
 use App\Investor;
+use App\Models\RegistrationCredit;
 use JunaidQadirB\Cray\Traits\RedirectsWithFlash;
 use Illuminate\Routing\Controller;
 
@@ -29,7 +30,22 @@ class AccountController extends Controller
 
         $investor =  $user->investor;
 
-        return view('.accounts.index', compact('accounts', 'investor'));
+        $available_registration_balance = $this->calculateAvailableBalance($investor);
+
+        return view('.accounts.index', compact('accounts', 'investor', 'available_registration_balance'));
+    }
+
+    private function calculateAvailableBalance($investor)
+    {
+
+        $transfers = RegistrationCredit::where('investor_id', $investor->id)
+            ->get();
+
+        $credit =  $transfers->sum('credit_amount');
+
+        $debit =  $transfers->sum('debit_amount');
+
+        return $credit - $debit;
     }
 
     private function getInvestorAccounts($user): array
