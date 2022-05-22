@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="card-footer px-3 py-2">
-                <a class="text-muted d-flex justify-content-between align-items-center" href="/student/reports"><span class="small font-weight-bold">
+                <a class="text-muted d-flex justify-content-between align-items-center" href="/transactions"><span class="small font-weight-bold">
                         Account Statement
                 </a></span>
             </div>

@@ -17,7 +17,7 @@ class DashboardController extends Controller
     }
     public function index(){
         $user = Auth::user();
-
+        
         $noticeMessages = $this->getDashboardNotices($user);
 
         $accounts = $this->getInvestorAccounts($user);
@@ -49,7 +49,7 @@ class DashboardController extends Controller
 
         $total_credits = $transactions->sum('credit_amount');
 
-        $balance_info =  $total_debits - $total_credits;
+        $balance_info =   $total_credits - $total_debits;
 
         return  $balance_info;
     }

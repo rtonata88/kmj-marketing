@@ -16,7 +16,6 @@ class CreateAccountTransactionsTable extends Migration
         Schema::create('account_transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('investor_id');
-            $table->integer('transaction_reference');
             $table->string('transaction_description');
             $table->date('transaction_date');
             $table->decimal('debit_amount', 15);

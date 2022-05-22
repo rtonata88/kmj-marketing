@@ -14,7 +14,6 @@ use App\StageRequirement;
 use Illuminate\Http\Request;
 
 use Auth;
-use LengthException;
 use Session;
 
 class TransferController extends Controller
@@ -73,13 +72,11 @@ class TransferController extends Controller
         $registration_credit->save();
 
         $this->creditToInvestorAccount($registration_credit, $toInvestor, $investor);
-
-        $account = $toInvestor->account;
         
-        $toInvestorAccountNeedsActivation = $this->checkIfToInvestorNeedsActivation($account);
+        $toInvestorAccountNeedsActivation = $this->checkIfToInvestorNeedsActivation($toInvestor);
         
         if($toInvestorAccountNeedsActivation){
-            $this->activateToInvestorAccount($account);
+            $this->activateToInvestorAccount($toInvestor);
         }
         
         Session::flash('flash_message', 'Your transfer request has been processed.');
@@ -113,18 +110,18 @@ class TransferController extends Controller
         }
     }
 
-    private function checkIfToInvestorNeedsActivation($account){
+    private function checkIfToInvestorNeedsActivation($investor){
         
-        if($account->status == 0){
+        if($investor->status == 0){
             return true;
         } else {
             return false;
         }
     }
 
-    private function activateToInvestorAccount($account){
+    private function activateToInvestorAccount($investor){
         
-        $available_balance = $this->calculateAvailableBalance($account->investor);
+        $available_balance = $this->calculateAvailableBalance($investor);
         
         $registration_amount = OtherSetting::select('value')
                                             ->where('label', '=', 'Registration Amount')
@@ -133,13 +130,33 @@ class TransferController extends Controller
 
         //Check if investor has enough credits to activate account                                            
         if($available_balance >= $registration_amount){
-            $account->status = 1;
-            //$account->save();
+            $investor->status = 1;
+            $investor->save();
             
-            $this->debitToInvestorAccount($account->investor, $registration_amount);
+            $this->debitToInvestorAccount($investor, $registration_amount);
             
-            $this->checkIfReferrerAccountNeedsUpgrade($account->referrer_investor_id);
+            $this->checkIfReferrerAccountNeedsUpgrade($investor->ancestors);
+
+            $this->creditReferrerProfitAccount($investor->ancestors);
         }
+    }
+
+    private function creditReferrerProfitAccount($ancestors){
+        
+        foreach($ancestors as $ancestor){
+            $account_transaction = new AccountTransaction();
+
+            $account_transaction->investor_id = $ancestor->id;
+            $account_transaction->transaction_description = "New sign up";
+            $account_transaction->transaction_date = date('Y-m-d');
+            $account_transaction->debit_amount = 0;
+            $account_transaction->credit_amount = $this->getSignUpProfitPerStage($ancestor->stage_id);
+            $account_transaction->save();
+        }
+    }
+
+    private function getSignUpProfitPerStage($stage_id){
+        return StageRequirement::where('stage_id', $stage_id)->first()->amount;
     }
 
     private function debitToInvestorAccount($investor, $registration_amount){
@@ -154,27 +171,36 @@ class TransferController extends Controller
         return $credit;
     }
 
-    private function checkIfReferrerAccountNeedsUpgrade($referrer_investor_id){
-        
-        if($referrer_investor_id != 0){
-            $investor = Investor::find($referrer_investor_id);
+    private function checkIfReferrerAccountNeedsUpgrade($ancestors){
+        $current_stage = 1;
 
-            $stageRequiredPeople = StageRequirement::where('stage_id', $investor->account->stage_id)->first();
+        $stageRequirement = StageRequirement::select('stage_id', 'people')->get();
+
+        foreach($ancestors as $ancestor){
             
-            $investorChildrenAccounts = $this->getChildrenAccounts($investor->id, 0);
-            dd($investorChildrenAccounts);
-            if(count($investorChildrenAccounts) > $stageRequiredPeople->people){
-                $this->updgradeAccount($investor->account);
+            $current_stage = $ancestor->stage_id;
+
+            $stageRequiredPeople = $stageRequirement->where('stage_id', $current_stage)->first();
+
+            $investorActiveChildren = $ancestor->descendants()->where('status', 1)->count();
+            
+            if($investorActiveChildren > $stageRequiredPeople->people){
+                $current_stage = $this->updgradeAccount($ancestor);
             }
         }
+
+        return $current_stage;
     }
 
-    private function updgradeAccount($account){
-        $last_stage = Stage::last();
-        if($account->stage_id < $last_stage->id){
-            $account->stage = ($account->stage + 1);
-            $account->save();
+    private function updgradeAccount($investor){
+        $last_stage = Stage::max('id');
+        
+        if($investor->stage_id < $last_stage){
+            $investor->stage_id = ($investor->stage_id + 1);
+            $investor->save();
         }
+
+        return  $investor->stage_id;
     }
 
     private function getChildrenAccounts($parentInvestorId, $children){

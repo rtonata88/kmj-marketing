@@ -22,7 +22,6 @@
 
                 <table class="table table-responsive-sm table-bordered table-sm no-wrap" style="width:100%">
                     <tr>
-                        <th>Transaction Reference</th>
                         <th>Transaction Date</th>
                         <th>Description</th>
                         <th>Debit</th>
@@ -34,10 +33,9 @@
                     ?>
                     @foreach($accountTransactions as $transaction)
                     <?php
-                    $balance = ($transaction->debit_amount > 0) ? $balance += $transaction->debit_amount : $balance -= $transaction->credit_amount
+                    $balance = ($transaction->credit_amount > 0) ? $balance += $transaction->credit_amount : $balance -= $transaction->debit_amount
                     ?>
                     <tr>
-                        <td>{{$transaction->transaction_reference}}</td>
                         <td>{{$transaction->transaction_date}}</td>
                         <td>{{$transaction->transaction_description}}</td>
                         <td>{{number_format($transaction->debit_amount, 2, '.',',')}}</td>

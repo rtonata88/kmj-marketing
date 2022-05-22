@@ -54,11 +54,11 @@
                 </a></span>
             </div>
         </div>
+        @if($account["status"] == "Not active")
         <div class="alert alert-warning">
-            @if($account["status"] == "Not active")
             Your account is not yet active. Please email your proof of payment to the Administrator.
-            @endif
         </div>
+        @endif
     </div>
     @endforeach
     <div class="col-md-6 col-sm-12">
