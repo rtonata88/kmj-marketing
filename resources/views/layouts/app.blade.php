@@ -59,10 +59,10 @@
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-group')}}"></use>
                     </svg>My Accounts</a>
             </li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/subjects">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/withdrawals">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
-                    </svg> Withdrawal Requests</a>
+                    </svg> Withdraw Requests</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/transfer">
                     <svg class="c-sidebar-nav-icon">
@@ -212,7 +212,7 @@
 
     <!-- end - This is for export functionality only -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-   
+
 
     <!--[if IE]><!-->
     <script src="{{asset('new/node_modules/@coreui/icons/js/svgxuse.min.js')}}"></script>
@@ -226,6 +226,8 @@
     <script src="{{asset('new/js/main.js')}}"></script>
     @stack('dataTableScript')
     @stack('transfers')
+    @stack('organo')
+    @stack('network')
 </body>
 
 </html>
