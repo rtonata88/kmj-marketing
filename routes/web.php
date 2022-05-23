@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware(['auth'])->group(
+    function () {
 
 Route::get('/dashboard', [App\Http\COntrollers\DashboardController::class, 'index'])->name('dashboard');
 
@@ -29,7 +31,10 @@ Route::resource('transfer', App\Http\COntrollers\TransferController::class);
 Route::resource('withdrawals', App\Http\COntrollers\WithdrawalController::class);
 
 Route::get('/registration-transactions/{investor_id}', [App\Http\COntrollers\RegistrationCreditController::class, 'statement']);
+Route::get('/network/chart-view', [App\Http\Controllers\NetworkController::class, 'chartView']);
+Route::get('/network/grid-view', [App\Http\Controllers\NetworkController::class, 'gridView']);
 
 Route::get('/transactions', [App\Http\Controllers\AccountTransactionController::class, 'index'])->name('transactions');
-
+    }
+);
 require __DIR__.'/auth.php';

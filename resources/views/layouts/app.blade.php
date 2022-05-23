@@ -69,7 +69,7 @@
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
                     </svg> Transfers</a>
             </li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/subjects">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/network/chart-view">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
                     </svg>My Network</a>
