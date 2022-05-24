@@ -75,15 +75,4 @@
     </div>
     @endforeach
 </div>
-
-@push('highcharts-css')
-<script src="{{asset('css/charts.css')}}"></script>
-@endpush
-@push('highcharts')
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
-<script src="{{asset('js/charts.js')}}"></script>
-@endpush
 @endsection

@@ -80,11 +80,7 @@
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
                     </svg>Update Info</a>
             </li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/subjects">
-                    <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
-                    </svg>Change password</a>
-            </li>
+            @if(Auth::user()->user_type == 'admin')
             <li class="c-sidebar-nav-title">SETTINGS</li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/stages">
                     <svg class="c-sidebar-nav-icon">
@@ -101,6 +97,7 @@
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
                     </svg>More settings</a>
             </li>
+            @endif
         </ul>
         <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
     </div>

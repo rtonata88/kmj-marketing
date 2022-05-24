@@ -12,6 +12,7 @@ use JunaidQadirB\Cray\Traits\RedirectsWithFlash;
 use Illuminate\Routing\Controller;
 
 use Auth;
+use Hash;
 class InvestorController extends Controller
 {
     use RedirectsWithFlash;
@@ -96,6 +97,16 @@ class InvestorController extends Controller
     public function update(InvestorUpdateRequest $request, Investor $investor)
     {
         $investor->update($request->except('_token'));
+
+        if (isset($request->password)) {
+            $request->validate([
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+            $user = Auth::user();
+
+            $user->update(['password' => Hash::make($request->password)]);
+        }
+
         return $this->success('Investor updated successfully!', 'investor.index');
     }
 

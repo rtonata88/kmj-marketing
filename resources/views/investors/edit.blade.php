@@ -78,6 +78,28 @@
                         </div>
                     </div>
                 </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info">
+                            <span class="text-help text-info">
+                                <strong>PlEASE NOTE: </strong>The password field can be left blank. Only fill it in if you wish to change/update it.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{Form::label('password', 'New Password')}}
+                            {{Form::password('password', ['class' => 'form-control', 'autocomplete'=>"none"])}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{Form::label('password_confirmation', 'Confirm New Password')}}
+                            {{Form::password('password_confirmation', ['class' => 'form-control'])}}
+                        </div>
+                    </div>
+                </div>
 
                 <button type="submit" class="btn btn-success" id="submit-btn"><span class=" fa fa-check-circle"></span> Submit</button>
                 <a href="/investor" class="btn"> Cancel</a>

@@ -18,11 +18,16 @@ class DashboardController extends Controller
     public function index(){
         $user = Auth::user();
         
-        $noticeMessages = $this->getDashboardNotices($user);
+        if($user->user_type == 'investor'){
 
-        $accounts = $this->getInvestorAccounts($user);
-
-        return view('dashboard', compact('noticeMessages', 'accounts'));
+            $noticeMessages = $this->getDashboardNotices($user);
+            
+            $accounts = $this->getInvestorAccounts($user);
+            
+            return view('dashboard', compact('noticeMessages', 'accounts'));
+        } else {
+            return view('admin.dashboard');
+        }
     }
 
     private function getInvestorAccounts($user): array{
