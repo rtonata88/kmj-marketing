@@ -24,4 +24,20 @@ class Investor extends Model
     {
         return $this->belongsTo(Stage::class);
     }
+
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
+
+    public function town(){
+        return $this->belongsTo(Town::class);
+    }
+
+    public function region(){
+        return $this->belongsTo(Region::class);
+    }
+
+    public function bank_account() {
+        return $this->hasOne(Models\BankAccount::class);
+    }
 }

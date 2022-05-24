@@ -75,7 +75,7 @@
                     </svg>My Network</a>
             </li>
             <li class="c-sidebar-nav-title">PROFILE MANAGEMENT</li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/subjects">
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/investor">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
                     </svg>Update Info</a>

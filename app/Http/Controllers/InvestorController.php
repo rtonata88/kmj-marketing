@@ -8,6 +8,7 @@ use App\Http\Requests\InvestorStoreRequest;
 use JunaidQadirB\Cray\Traits\RedirectsWithFlash;
 use Illuminate\Routing\Controller;
 
+use Auth;
 class InvestorController extends Controller
 {
     use RedirectsWithFlash;
@@ -19,8 +20,11 @@ class InvestorController extends Controller
      */
     public function index()
     {
-        $investors = Investor::paginate(15);
-        return view('.investors.index', compact('investors'));
+        $user = Auth::user();
+
+        $investor = $user->investor;
+        
+        return view('.investors.index', compact('investor'));
     }
 
     /**

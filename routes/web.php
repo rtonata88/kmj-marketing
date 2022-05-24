@@ -29,6 +29,7 @@ Route::resource('other-settings', App\Http\COntrollers\OtherSettingController::c
 Route::resource('accounts', App\Http\COntrollers\AccountController::class);
 Route::resource('transfer', App\Http\COntrollers\TransferController::class);
 Route::resource('withdrawals', App\Http\COntrollers\WithdrawalController::class);
+Route::resource('investor', App\Http\COntrollers\InvestorController::class);
 
 Route::get('/registration-transactions/{investor_id}', [App\Http\COntrollers\RegistrationCreditController::class, 'statement']);
 Route::get('/network/chart-view', [App\Http\Controllers\NetworkController::class, 'chartView']);
