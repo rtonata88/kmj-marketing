@@ -54,6 +54,7 @@
                 </a>
             </li>
             <li class="c-sidebar-nav-title">ACCOUNT MANAGEMENT</li>
+            @if(Auth::user()->user_type == 'investor')
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/accounts">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-group')}}"></use>
@@ -74,6 +75,24 @@
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
                     </svg>My Network</a>
             </li>
+            @endif
+            @if(Auth::user()->user_type == 'admin')
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/deposits">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                    </svg> Deposits</a>
+            </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/transfer">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                    </svg> Transfers</a>
+            </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/withdrawals">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                    </svg> Withdraw Requests</a>
+            </li>
+            @endif
             <li class="c-sidebar-nav-title">PROFILE MANAGEMENT</li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/investor">
                     <svg class="c-sidebar-nav-icon">

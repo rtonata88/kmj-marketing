@@ -20,6 +20,10 @@ class Investor extends Model
         return $this->hasMany(AccountTransaction::class);
     }
 
+    public function user(){
+        return $this->belongsTo(\App\Models\User::class);
+    }
+
     public function stage()
     {
         return $this->belongsTo(Stage::class);

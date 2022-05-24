@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AccountTransaction;
 use App\Models\PayoutMethod;
 use App\Models\Withdrawal;
 use App\OtherSetting;
@@ -21,7 +22,11 @@ class WithdrawalController extends Controller
     {
         $user = Auth::user();
 
-        $withdrawals = Withdrawal::where('investor_id', $user->investor->id)->get();
+        if($user->user_type == 'investor'){
+            $withdrawals = Withdrawal::where('investor_id', $user->investor->id)->get();
+        } else {
+             $withdrawals = Withdrawal::paginate(25);
+        }
 
         return view('withdrawals.index', compact('withdrawals'));
     }
@@ -118,7 +123,11 @@ class WithdrawalController extends Controller
      */
     public function show($id)
     {
-        //
+        $withdrawal = Withdrawal::find($id);
+
+        $investor = $withdrawal->investor;
+
+        return view('withdrawals.show', compact('withdrawal', 'investor'));
     }
 
     /**
@@ -142,5 +151,30 @@ class WithdrawalController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function process($id){
+        $withdrawal = Withdrawal::find($id);
+
+        $withdrawal->status = 'processed';
+        $withdrawal->process_date = date('Y-m-d');
+        $withdrawal->processed_by = Auth::user()->id;
+        $withdrawal->save();
+
+        $this->debitInvestorAccount($withdrawal);
+
+        Session::flash('message', "Withdrawal request processed succussfully.");
+
+        return redirect()->route('withdrawals.index');
+    }
+
+    private function debitInvestorAccount($withdrawal){
+        $account_transaction = new AccountTransaction();
+        $account_transaction->investor_id = $withdrawal->investor_id;
+        $account_transaction->transaction_description = "Payout";
+        $account_transaction->transaction_date = date('Y-m-d');
+        $account_transaction->debit_amount = $withdrawal->payout_amount;
+        $account_transaction->credit_amount = 0;
+        $account_transaction->save();
     }
 }

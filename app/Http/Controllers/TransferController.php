@@ -29,10 +29,15 @@ class TransferController extends Controller
 
 
     public function create(){
+        $user = Auth::user();
 
-        $investor = Auth::user()->investor;
+        $investor = $user->investor;
 
-        $available_balance = $this->calculateAvailableBalance($investor);
+        if($user->user_type == 'admin'){
+            $available_balance = 10000;
+        } else {
+            $available_balance = $this->calculateAvailableBalance($investor);
+        }
 
         return view('transfers.create', compact('available_balance'));
     }

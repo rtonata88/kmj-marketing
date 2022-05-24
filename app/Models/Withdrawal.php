@@ -16,4 +16,12 @@ class Withdrawal extends Model
                             'payout_amount',
                             'payout_method_id'
                         ];
+
+    public function investor(){
+        return $this->belongsTo(\App\Investor::class);
+    }
+
+    public function payout_method(){
+        return $this->belongsTo(\App\Models\PayoutMethod::class);
+    }
 }

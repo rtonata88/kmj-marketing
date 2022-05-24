@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('/admin/deposits', App\Http\COntrollers\InvestorDepositsController::class);
 
+    Route::get('/withdrawals/process/{id}', [App\Http\COntrollers\WithdrawalController::class, 'process']);
+});
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\COntrollers\DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('countries', App\Http\COntrollers\CountryController::class);
