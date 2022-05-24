@@ -4,6 +4,7 @@
     <!-- Breadcrumb-->
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item">Profile</li>
+        <li class="breadcrumb-item">Bank Account Details</li>
         <li class="breadcrumb-item active">{{$investor->name}}</li>
         <!-- Breadcrumb Menu-->
     </ol>
@@ -20,7 +21,7 @@
         @endif
         <div class="card">
             <div class="card-header">
-                <strong>Update profile info</strong> | <a href="/investor"> Back</a>
+                <strong>Update banking details</strong> | <a href="/investor"> Back</a>
             </div>
             @if($errors->any())
             <ul class="text-danger">
@@ -31,50 +32,50 @@
                 @endforeach
             </ul>
             @endif
-            {!! Form::model($investor, array('route' => array('investor.update', $investor->id), 'method' => 'PATCH', 'class'=> 'form-horizontal')) !!}
+            {!! Form::open(array('route' => array('bank-account.update', $investor->id), 'method' => 'PATCH', 'class'=> 'form-horizontal')) !!}
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            {{Form::label('name', 'Your Fullnames (Name and Surname)')}}
-                            {{Form::text('name', null, ['class' => 'form-control'])}}
-                            {{Form::hidden('id', null, ['class' => 'form-control'])}}
+                            {{Form::label('holder_name', 'Holder Fullnames (Name and Surname)')}}
+                            {{Form::text('holder_name', $investor->bank_account->holder_name ?? $investor->name, ['class' => 'form-control'])}}
+                            {{Form::hidden('investor_id', $investor->id, ['class' => 'form-control'])}}
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            {{Form::label('mobile_number', 'Your Mobile number')}}
-                            {{Form::text('mobile_number', null, ['class' => 'form-control'])}}
+                            {{Form::label('account_number', 'Account number')}}
+                            {{Form::number('account_number', $investor->bank_account->account_number ?? '', ['class' => 'form-control'])}}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            {{Form::label('email', 'Email address')}}
-                            {{Form::email('email', null, ['class' => 'form-control'])}}
+                            {{Form::label('account_type', 'Account Type')}}
+                            {{Form::select('account_type', ['Cheque' => 'Cheque', 'Savings' => 'Savings'],  $investor->bank_account->account_type ?? 'Cheque', ['class' => 'form-control'])}}
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            {{Form::label('country_id', 'Country')}}
-                            {{Form::select('country_id', $countries, null, ['class' => 'form-control'])}}
+                            {{Form::label('bank_name', 'Bank')}}
+                            {{Form::text('bank_name', $investor->bank_account->bank_name ?? '', ['class' => 'form-control'])}}
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            {{Form::label('region_id', 'Region')}}
-                            {{Form::select('region_id', $regions, null, ['class' => 'form-control'])}}
+                            {{Form::label('branch_name', 'Branch name')}}
+                            {{Form::text('branch_name', $investor->bank_account->branch_name ?? '', ['class' => 'form-control'])}}
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            {{Form::label('town_id', 'Town')}}
-                            {{Form::select('town_id', $towns, null, ['class' => 'form-control'])}}
+                            {{Form::label('branch_code', 'Branch code')}}
+                            {{Form::text('branch_code', $investor->bank_account->branch_code ?? '', ['class' => 'form-control'])}}
                         </div>
                     </div>
                 </div>

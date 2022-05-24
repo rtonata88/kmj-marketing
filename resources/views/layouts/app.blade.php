@@ -228,6 +228,7 @@
     @stack('transfers')
     @stack('organo')
     @stack('network')
+    @stack('bank')
 </body>
 
 </html>

@@ -74,6 +74,11 @@
                         <th style="background-color: rgba(227, 227, 227, 0.5)">Region </th>
                         <td>{{$investor->region->name}}</td>
                     </tr>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <a href="/investor/{{$investor->id}}/edit" class="btn btn-primary">Update Profile Information</a>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -102,11 +107,16 @@
                     </tr>
                     <tr>
                         <th style="background-color: rgba(227, 227, 227, 0.5)">Account Number </th>
-                        <td>{{$$investor->bank_account->account_number ?? ''}}</td>
+                        <td>{{$investor->bank_account->account_number ?? ''}}</td>
                     </tr>
                     <tr>
                         <th style="background-color: rgba(227, 227, 227, 0.5)">Account Type </th>
                         <td>{{$investor->bank_account->account_type ?? ''}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <a href="/bank-account/{{$investor->id}}/edit" class="btn btn-primary">Update Bank Details</a>
+                        </td>
                     </tr>
                 </table>
             </div>

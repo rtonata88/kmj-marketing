@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\Investor;
 use App\Http\Requests\InvestorUpdateRequest;
 use App\Http\Requests\InvestorStoreRequest;
+use App\Region;
+use App\Town;
 use JunaidQadirB\Cray\Traits\RedirectsWithFlash;
 use Illuminate\Routing\Controller;
 
@@ -73,8 +76,14 @@ class InvestorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(\App\Investor $investor)
-    {
-        return view('.investors.edit', compact('investor'));
+    {   
+        $countries = Country::pluck('name', 'id'); 
+
+        $towns = Town::pluck('name', 'id'); 
+        
+        $regions = Region::pluck('name', 'id');
+
+        return view('.investors.edit', compact('investor', 'countries', 'towns', 'regions'));
     }
 
     /**
@@ -87,7 +96,7 @@ class InvestorController extends Controller
     public function update(InvestorUpdateRequest $request, Investor $investor)
     {
         $investor->update($request->except('_token'));
-        return $this->success('Investor updated successfully!', 'investors.index');
+        return $this->success('Investor updated successfully!', 'investor.index');
     }
 
     /**
