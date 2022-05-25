@@ -1,0 +1,238 @@
+@include breakpoint(max-lg) {
+    .inner-banner-wrapper.contact {
+        flex-wrap: wrap;
+    }
+}
+.contact-wrapper {
+    margin-top: 250px;
+    padding: 40px;
+    background: $white;
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px 5px rgba($dark, .2);
+    align-self: flex-end;
+    .title {
+        margin-bottom: 15px;
+    }
+    .custom-button {
+        height: inherit;
+        padding: 12px 25px;
+        background: $primary-color;
+        &:hover {
+            background: rgba($primary-color, .95);
+        }
+    }
+    @include breakpoint(max-lg) {
+        margin-top: -60px;
+
+    }
+    @include breakpoint(max-sm) {
+        padding: 35px 20px 30px;
+    }
+}
+.overflow-initial {
+    overflow: initial;
+}
+.contact-form {
+    .form--group {
+        margin-bottom: 25px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        .form--control {
+            box-shadow: none;
+            border-bottom: 1px solid $border-color;
+            border-radius: 0px;
+            padding-left: 0;
+            &:focus {
+                border-color: $base-color;
+            }
+        }
+        textarea.form--control {
+            height: 60px;
+        }
+
+    }
+    .choose-method {
+        display: flex;
+        .form--group {
+            margin-top: 10px;
+            margin-right: 25px;
+        }
+        input {
+            width: 15px;
+            height: 15px;
+        }
+    }
+    .custom-button {
+        margin: 0 auto;
+        display: block;
+        margin-top: 45px;
+        @include breakpoint(max-lg) {
+            margin-top: 0;
+        }
+    }
+}
+.contact-info-item {
+    padding: 40px 30px;
+    background: $white;
+    @include shadow2;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    height: 100%;
+    @include breakpoint(max-sm) {
+        text-align: center;
+    }
+}
+.contact-item-thumb {
+    width: 60px;
+    height: 60px;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    @include breakpoint(max-sm) {
+        margin: 0 auto;
+    }
+}
+.contact-item-content {
+    width: calc(100% - 60px);
+    padding-left: 20px;
+    .title {
+        margin-bottom: 20px;
+    }
+    
+    @include breakpoint(max-sm) {
+        width: 100%;
+        padding: 0;
+        margin-top: 25px;
+        .title {
+            margin-bottom: 10px ;
+        }
+    }
+}
+.contact-info-thumb {
+    img {
+        width: 100%;
+    }
+}
+
+// Subscribe
+.subscription-wrapper {
+    padding-right: 40px;
+    @include breakpoint(max-lg) {
+        padding-right: 0;
+        text-align: center;
+    }
+    .title {
+        margin-bottom: 15px;
+    }
+    p {
+        margin-bottom: 30px;
+    }
+    .subscription-form {
+        .form--group {
+            position: relative;
+            .form--control {
+                height: 60px;
+                padding-right: 180px;
+                @include breakpoint(max-sm) {
+                    padding-right: 20px;
+                }
+            }
+            button {
+                position: absolute;
+                height: 100%;
+                right: 0;
+                top: 0;
+                font-size: 36px;
+                border-radius: 5px;
+                background: $primary-color;
+                border-radius: 0 5px 5px 0;
+                @include breakpoint(max-lg) {
+                    margin-top: 0 !important;
+                }
+            }
+            @include breakpoint(max-md) {
+                position: inherit;
+                button {
+                    width: 100%;
+                    height: 55px;
+                    font-size: 30px;
+                }
+            }
+            @include breakpoint(max-sm) {
+                position: inherit;
+                button {
+                    position: inherit;
+                    margin: 0 auto;
+                    display: block;
+                    margin-top: 15px !important;
+                    padding: 5px 30px;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+    .contact-num {
+        margin-top: 35px;
+        color: $primary-color;
+        a {
+            color: $primary-color;
+        }
+    }
+}
+
+// Gateway Two
+.payment-gateway-two-wrapper {
+    padding-left: 40px;
+    @include breakpoint(max-lg) {
+        padding-left: 0;
+    }
+}
+div[class*="col"] {
+    &:nth-of-type(4n + 1) {
+        >.payment-item-two {
+            box-shadow: 0 0 20px 3px rgba($theme-two, .1);
+        }
+    }
+    &:nth-of-type(4n + 2) {
+        >.payment-item-two {
+            box-shadow: 0 0 20px 3px rgba($theme-three, .1);
+        }
+    }
+    &:nth-of-type(4n + 3) {
+        >.payment-item-two {
+            box-shadow: 0 0 20px 3px rgba($theme-one, .1);
+        }
+    }
+    &:nth-of-type(4n + 4) {
+        >.payment-item-two {
+            box-shadow: 0 0 20px 3px rgba($base-color, .1);
+        }
+    }
+}
+.payment-item-two {
+    padding: 30px;
+    background: $white;
+    text-align: center;
+    border-radius: 10px;
+   @include breakpoint(max-sm) {
+       padding: 20px 15px;
+   }
+    .thumb {
+        width: 45px;
+        img {
+            width: 100%;
+        }
+        margin: 0 auto 15px;
+    }
+    .title {
+        font-size: 16px;
+    }
+}

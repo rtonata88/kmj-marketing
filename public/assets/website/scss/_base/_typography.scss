@@ -1,0 +1,296 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    color: $body-color;
+    line-height: $lh-p;
+    overflow-x: hidden !important;
+    font-family: $body;
+    background: $body-bg;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    color: $title-color;
+    font-family: $heading;
+    a {
+        color: $title-color;
+        &:hover {
+            color: $base-color;
+        }
+    }
+}
+h1 {
+    font-size: $fs-h1;
+}
+h2 {
+    font-size: $fs-h2;
+    margin-top: -7px;
+}
+h3 {
+    font-size: $fs-h3;
+    margin-top: -6px;
+}
+h4 {
+    font-size: $fs-h4;
+    margin-top: -5px;
+}
+h5 {
+    font-size: $fs-h5;
+    margin-top: -4px;
+}
+h6 {
+    font-size: $fs-h6;
+    margin-top: -3px;
+}
+p {
+    margin: 0;
+}
+
+a {
+    display: inline-block;
+    @include transition;
+    text-decoration: none;
+    color: $body-color;
+    &:hover {
+        text-decoration: none;
+        color: $base-color;
+    }
+}
+span {
+    display: inline-block;
+}
+ul {
+    margin: -7px 0;
+    padding: 0;
+    li {
+        list-style: none;
+        padding: 7px 0;
+    }
+}
+
+.bg_img {
+    background-size: cover !important;
+    background-position: center center;
+    background-repeat: no-repeat !important;
+}
+.bg_fixed {
+    background-attachment: fixed;
+}
+.top__center {
+    background-position: top center;
+}
+
+// 
+.padding-top {
+    padding-top: 150px;
+}
+.padding-bottom {
+    padding-bottom: 150px;
+}
+
+
+input, textarea, button {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+button {
+    width: 100%;
+    cursor: pointer;
+    height: 50px;
+    background: $primary-color;
+    color: $white;
+    font-weight: 500;
+    text-transform: capitalize;
+    border-radius: 5px;
+    transition: all ease .4s;
+    &:hover {
+        background: $base-color;
+    }
+}
+label {
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+.form--control {
+    width: 100%;
+    height: 50px;
+    color: $dark;
+    padding: 0 20px;
+    border-radius: 5px;
+    transition: all ease .2s;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    box-shadow: 3px 3px 10px 3px rgba($color:$primary-color,$alpha:.05);
+    &:focus {
+      background-color: $white;
+      box-shadow: 1px 1px 10px 3px rgba($color:$theme-four,$alpha:.15);
+    }
+}
+::-webkit-input-placeholder {
+    color: $dark;
+}
+
+textarea {
+    width: 100%;
+    height: 130px;
+    resize: vertical;
+    background: $white; 
+    padding: 20px;
+    border-radius: 5px;
+    padding-top: 25px;
+    overflow: hidden;
+    font-weight: 400;
+    @include transition;
+    &:focus {
+      background: $white;
+      box-shadow: 1px 1px 10px 3px rgba($color:$theme-four,$alpha:.15);
+      @include shadow;
+    }
+}
+textarea.form--control {
+    height: 120px;
+    padding-top: 10px;
+}
+
+img {
+    @include transition;
+}
+.title,.name {
+    @include transition;
+}
+
+.section-bg {
+    background: $section-bg;
+}
+
+.nice-select {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    .list {
+        max-height: 200px;
+        li {
+            min-height: 20px;
+            max-height: 35px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.custom--checkbox {
+    display: flex;
+    label {
+        margin-bottom: -2px;
+        padding-left: 7px;
+    }
+    input[type="checkbox"] {
+        appearance: none;
+        @include center;
+        height: 15px;
+        width: 15px;
+        cursor: pointer;
+        background: $white;
+        border: 1px solid rgba($primary-color, $alpha:.4);
+        border-radius: 2px;
+        margin-top: 5px;
+        border-radius: 50%;
+    }
+    input[type="checkbox"]:checked {
+        background: $base-color;
+        border-color: $base-color;
+    }
+    input[type="checkbox"]::after {
+        content: "";
+        font-family: 'Line Awesome Free';
+        font-weight: 900;
+        font-size: 12px;
+        color: $white;
+        visibility: hidden;
+        opacity: 0;
+        background: $base-color;
+    }
+    input[type="checkbox"]:checked::after {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+.custom--radio {
+    display: flex;
+    label {
+        margin-bottom: -2px;
+        padding-left: 7px;
+    }
+    input[type="radio"] {
+        appearance: none;
+        @include center;
+        height: 15px;
+        width: 15px;
+        cursor: pointer;
+        background: $white;
+        border: 1px solid rgba($primary-color, $alpha:.4);
+        border-radius: 2px;
+        margin-top: 5px;
+        border-radius: 50%;
+    }
+    input[type="radio"]:checked {
+        background: $base-color;
+        border-color: $base-color;
+    }
+    input[type="radio"]::after {
+        content: "";
+        font-family: 'Line Awesome Free';
+        font-weight: 900;
+        font-size: 12px;
+        color: $white;
+        visibility: hidden;
+        opacity: 0;
+        background: $base-color;
+    }
+    input[type="radio"]:checked::after {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+.scrollToTop {
+    width: 40px;
+    height: 40px;
+    @include center;
+    color: $white;
+    z-index: 9999;
+    bottom: 30px;
+    right: 30px;
+    font-size: 18px;
+    position: fixed;
+    -webkit-transform: translateY(150px);
+    -ms-transform: translateY(150px);
+    transform: translateY(150px);
+    background: $base-color;
+    border-radius: 3px;
+}
+.scrollToTop:hover {
+    color: $white;
+}
+.scrollToTop.active {
+    transform: translateY(0);
+    animation: bounceInDown 2s;
+}
+.pos-rel {
+    position: relative;
+}

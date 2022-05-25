@@ -1,0 +1,283 @@
+.banner-section {
+    padding-top: 260px;
+    overflow: hidden;
+    @include breakpoint(max-xxl) {
+        padding-top: 240px;
+    }
+    @include breakpoint(max-xl) {
+        padding-top: 150px;
+        padding-bottom: 0;
+    }
+    @include breakpoint(max-sm) {
+        padding-top: 140px;
+    }
+}
+.banner-wrapper {
+    display: flex;
+
+}
+.banner-thumb {
+    direction: rtl;
+    position: relative;
+    margin-top: 100px;
+    img {
+        direction: rtl;
+    }
+    .shape1 {
+        position: absolute;
+        bottom: 30px;
+        left: -78px;
+        max-width: 250px;
+        animation: move-tb 5s linear infinite;
+        @include breakpoint(max-xl) {
+            left: -190px;
+        }
+    }
+    .shape2 {
+        left: -100px;
+        @extend .shape1;
+        bottom: 105%;
+        animation: rotate 20s linear infinite;
+        
+    }
+}
+.banner-content {
+    padding-left: 40px;
+    @include breakpoint(max-lg) {
+        text-align: center;
+    }
+    .banner-title {
+        text-transform: uppercase;
+        line-height: 1.08;
+        font-weight: 400;
+        color: white;
+        display: inline-block;
+        margin-bottom: 35px;
+        span {
+            display: inline-block;
+            font-weight: 700;
+            margin-right: 5px;
+        }
+    }
+    .subtitle {
+        font-size: 22px;
+        color: $white;
+        max-width: 530px;
+    }
+    .button-group {
+        margin-top: 40px;
+        .cmn--btn {
+            margin-right: 35px;
+            background: $gradient-secondary;
+            @include shadow2;
+        }
+        @include breakpoint(max-lg) {
+            justify-content: center;
+        }
+    }
+    @include breakpoint(max-xxl) {
+        .banner-title {
+            font-size: 60px;
+            margin-bottom: 30px;
+        }
+        .subtitle {
+            font-size: 20px;
+        }
+    }
+    @include breakpoint(max-xl) {
+        padding-bottom: 200px;
+        padding-top: 80px;
+        .banner-title {
+            font-size: 56px;
+            margin-bottom: 30px;
+        }
+    }
+    @include breakpoint(max-lg) {
+        padding-bottom: 170px;
+        padding-left: 0;
+        .banner-title {
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+    }
+    @include breakpoint(max-md) {
+        padding-top: 30px;
+        .subtitle {
+            font-size: 18px;
+        }
+    }
+    @include breakpoint(max-sm) {
+        padding-bottom: 120px;
+        padding-top: 0px;
+        .banner-title {
+            margin-bottom: 23px;
+            font-size: 42px;
+        }
+        .subtitle {
+            font-size: 17px;
+        }
+        .button-group {
+            margin-top: 25px;
+            .cmn--btn {
+                margin-right: 15px;
+            }
+        }
+    }
+}
+
+
+// Inner Banner Starts Here
+.inner-banner {
+    position: relative;
+    .shape1 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        max-width: 100%;
+        img {
+            max-width: 100%;
+        }
+    }
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    @include breakpoint(max-lg) {
+    }
+}
+.inner-banner-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include breakpoint(max-md) {
+        text-align: center;
+        justify-content: center;
+    }
+}
+.inner-banner-content {
+    max-width: 530px;
+    padding-top: 230px;
+    padding-bottom: 170px !important;
+    .inner-banner-title {
+        font-size: 70px;
+        text-transform: uppercase;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .breadcums {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 10px;
+        @include breakpoint(max-md) {
+            text-align: center;
+            justify-content: center;
+        }
+        li {
+            font-size: 20px;
+            a {
+                position: relative;
+                padding-right: 30px;
+                margin-right: 15px;
+                @include breakpoint(max-sm) {
+                    margin-right: 5px;
+                    &::before {
+                        margin-top: -2px !important;
+                    }
+                }
+                &:hover {
+                    color: $base-color;
+                }
+                &::before {
+                    @include line-ico;
+                    content: "\f101";
+                    font-size: 20px;
+                    right: 0;
+                    top: 0px;
+                    color: $white;
+                }
+            }
+        }
+    }
+    * {
+        color: $white;
+    }
+    @include breakpoint(xxl) {
+        padding-bottom: 180px !important;
+        padding-top: 240px !important;
+    }
+    @include breakpoint(max-xxl) {
+        padding-top: 230px !important;
+    }
+    @include breakpoint(max-xl) {
+        padding-top: 200px !important;
+        padding-bottom: 160px !important;
+        .inner-banner-title {
+            font-size: 56px !important;
+        }
+    }
+    @include breakpoint(max-lg) {
+        padding-bottom: 115px !important;
+        .inner-banner-title {
+            font-size: 46px !important;
+            max-width: 400px;
+        }
+    }
+    @include breakpoint(max-md) {
+        padding-top: 150px !important;
+    }
+    @include breakpoint(max-sm) {
+        padding-top: 150px !important;
+        padding-bottom: 100px !important;
+        .inner-banner-title {
+            font-size: 32px !important;
+            max-width: 300px;
+        }
+        .breadcums {
+            li {
+                font-size: 18px;
+            }
+        }
+    }
+}
+.inner-banner-thumb {
+    max-width: 500px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    @include breakpoint(xl) {
+        right: 100px;
+    }
+    &.about {
+        bottom: -100px;
+        @include breakpoint(max-xxl) {
+            bottom: -50px;
+        }
+    }
+    &.about2 {
+        bottom: -150px;
+        @include breakpoint(max-xxl) {
+            bottom: -100px;
+        }
+    }
+    @include breakpoint(max-xxl) {
+        max-width: 420px;
+    }
+    @include breakpoint(max-xl) {
+        max-width: 400px;
+    }
+    @include breakpoint(max-lg) {
+        align-self: initial;
+        max-width: 350px;
+    }
+    img {
+        width: 100%;
+    }
+}
+.contact-banner {
+    @include breakpoint(lg) {
+        padding-top: 0!important;
+        padding-bottom: 0px !important;
+    }
+}
+// Inner Banner Ends Here

@@ -1,0 +1,301 @@
+$bootstrap-sass-asset-helper: false !default;
+// $title-color: #042656;
+$title-color: #292929;
+
+//CMN COLORS
+$base-color: #ee912e; 
+$gradient-base: linear-gradient( 180deg, rgb(225,163,96) 30%, rgb(227,142,50) 67%, rgb(229,121,4) 88%);
+$gradient-base-2: linear-gradient( 0deg, rgb(230, 157, 80) 30%, rgb(227,142,50) 67%, rgb(241, 127, 4) 88%);
+
+ 
+$primary-color: #4425f1;
+$secondary-color: #f12b8d;
+$gradient-secondary: linear-gradient( 0deg, rgb(241,43,141) 30%, rgb(236,51,188) 67%, rgb(231,59,234) 88%);
+
+$section-bg : rgba($color:$base-color,$alpha:.05);
+$body-color :#777777;
+$body-bg : rgb(255, 255, 255);
+
+
+$success-color: #28c76f;
+$danger-color: #ea5455;
+$warning-color: #f99f0b;
+$info-color: #1e9ff2;
+$dark-color: #192a56;
+$white-color: #fff;
+$white: #fff;
+$black-color: #000;
+$dark: rgb(31, 31, 31);
+$dark2:rgb(22, 26, 32);
+$light-dark: rgb(64, 64, 70);
+$light-color: rgb(250, 250, 250);
+
+// $theme-one: #0f2d92;
+$theme-one: #3f58e3;
+$theme-two: #05b9c8;
+$theme-three: #b31da3;
+$theme-four: #7e2afc;
+$theme-five: #381087;
+.theme-one {
+   color: $theme-one !important;
+}
+.theme-one-bg {
+   background: $theme-one !important;
+}
+.theme-two {
+   color: $theme-two !important;
+}
+.theme-two-bg {
+   background: $theme-two !important;
+}
+.theme-three {
+   color: $theme-three !important;
+}
+.theme-three-bg {
+   background: $theme-three !important;
+}
+.theme-four {
+   color: $theme-four !important;
+}
+.theme-four-bg {
+   background: $theme-four !important;
+}
+
+$gradient-one: linear-gradient( 0deg, rgb(64,87,227) 14%, rgb(0,145,255) 73%);
+$gradient-two: linear-gradient( 0deg, rgb(5,185,200) 19%, rgb(21,214,176) 58%, rgb(37,243,152) 81%);
+$gradient-three: linear-gradient( 0deg, rgb(179,29,163) 9%, rgb(214,63,135) 50%, rgb(249,96,106) 88%); 
+$gradient-four: linear-gradient( 0deg, rgb(126,42,252) 39%, rgb(144,61,247) 70%, rgb(162,80,242) 88%); 
+ 
+$gradient-one-alt: linear-gradient( 45deg, rgb(64,87,227) 14%, rgb(0,145,255) 73%);
+$gradient-two-alt: linear-gradient( 45deg, rgb(5,185,200) 19%, rgb(21,214,176) 58%, rgb(37,243,152) 81%);
+$gradient-three-alt: linear-gradient( 45deg, rgb(179,29,163) 9%, rgb(214,63,135) 50%, rgb(249,96,106) 88%); 
+$gradient-four-alt: linear-gradient( 45deg, rgb(126,42,252) 39%, rgb(144,61,247) 70%, rgb(162,80,242) 88%); 
+ 
+.gradient-one {
+   background: $gradient-one !important;
+}
+.gradient-two {
+   background: $gradient-two !important;
+}
+.gradient-three {
+   background: $gradient-three !important;
+}
+.gradient-four {
+   background: $gradient-four !important;
+}
+
+$light-color :#f8f8f8;
+$border-color: #ebebeb;
+$before-bg: #300173;
+$before-bg-2: #9c7003;
+$fafa: #fafafa;
+$white: #fff;
+// $section-bg : #cdebff;
+// $section-bg : #140000;
+
+
+$theme-bg : -webkit-gradient(linear,left top,right top,from(#0f2d92),to(#203392));
+$theme-bg-2 : -webkit-linear-gradient(-90deg, #598eff 0%, #203392 45%, #090a0a 100%);
+$primary-bg : -webkit-linear-gradient(-90deg, #071a20 0%, #01141a 45%, #021013 100%);
+$primary-bg-2 : -webkit-linear-gradient(90deg, #071a20 0%, #01141a 45%, #021013 100%);
+
+
+
+// font-family
+$Body: 'Roboto', sans-serif;
+$body: 'Roboto', sans-serif;
+
+$Heading:  'Quicksand', sans-serif;
+$heading:  'Quicksand', sans-serif;
+
+//Description line height
+$lh-p: 1.65; //28px; 
+
+// font-size
+$fs-base: 16px;
+$fs-large: 18px; 
+$fs-small: 14px;
+$fs-h1: 90px;
+$fs-h2: 40px;
+$fs-h3: 30px;
+$fs-h4: 24px;
+$fs-h5: 20px;
+$fs-h6: 18px;
+
+$fs-sm-h1: 70px;
+$fs-sm-h2: 48px;
+$fs-sm-h3: 36px;
+$fs-sm-h4: 28px;
+$fs-sm-h5: 24px;
+$fs-sm-h6: 22px;
+
+ //  transition
+$transition: all ease 0.3s;
+
+
+ 
+// social-media icons color
+$whatsapp: #25d366;
+$facebook: #3b5998;
+$twitter: #55acee;
+$linkedin: #007bb5;
+$pinterest: #007bb5;
+$skype: #2fb7df;
+$youtube: #cd201f;
+$google: #dd4b39;
+$camera: #e4405f;
+$instagram: #e4405f;
+$tumblr: #34465d;
+$behance: #1769ff;
+$star: #f1c522;
+$green: #0be881;
+$green-h: #0fbcf9;
+$red: #f53b57;
+$yellow: #dec32b;
+$nell: #212fb4;
+$navy: #d8e0f3;
+$placeholder: #a1a1a2;
+$name-dec: #3f485d;
+$futbol : #db3776;
+$vimeo : #1ab7ea;
+//== Typography
+
+/* Text Color */
+.text--primary {
+    color: $primary-color !important;
+}
+.text--secondary {
+    color: $secondary-color !important;
+}
+.text--base {
+    color: $base-color !important;
+}
+.text--danger {
+   color: #DC3545 !important;
+}
+
+.text--warning {
+   color: #FFC107 !important;
+}
+
+.text--info {
+   color: #17A2B8 !important;
+}
+
+.text--success {
+   color: #28A745 !important;
+}
+
+.text--dark {
+   color: #343A40 !important;
+}
+.text--white {
+   color: #fff !important;
+}
+
+
+/* Btn Color */
+
+.btn--base {
+   color: #fff;
+   background: $base-color;
+   border-color: $base-color;
+}
+
+.btn--danger {
+   color: #fff;
+   background: #DC3545;
+   border-color: #DC3545;
+}
+
+.btn--warning {
+   color: #fff;
+   background: #FFC107;
+   border-color: #FFC107;
+}
+
+.btn--info {
+   color: #fff;
+   background: #17A2B8;
+   border-color: #17A2B8;
+}
+
+.btn--success {
+   color: #fff;
+   background: #28A745;
+   border-color: #28A745;
+}
+
+.btn--dark {
+   color: #fff;
+   background: #343A40;
+   border-color: #343A40;
+}
+
+
+/* Background Color */
+
+.bg--primary {
+   background: $primary-color !important;
+}
+.bg--secondary {
+   background: $secondary-color !important;
+}
+.bg--base {
+   background: $base-color !important;
+}
+.bg--danger {
+   background: #DC3545 !important;
+}
+
+.bg--warning {
+   background: #FFC107 !important;
+}
+
+.bg--info {
+   background: #17A2B8 !important;
+}
+
+.bg--success {
+   background: #28A745 !important;
+}
+
+.bg--dark {
+   background: #343A40 !important;
+}
+.bg--white {
+   background: #fff !important;
+}
+.bg--none {
+   background: transparent !important;
+}
+
+
+
+// Social Media Colors
+
+.facebook {
+   color: $facebook;
+}
+.twitter {
+   color: $twitter;
+}
+.vimeo {
+   color: $vimeo;
+}
+.instagram {
+   color: $instagram;
+}
+
+.facebook-bg {
+   background: $facebook;
+}
+.twitter-bg {
+   background: $twitter;
+}
+.vimeo-bg {
+   background: $vimeo;
+}
+.instagram-bg {
+   background: $instagram;
+}

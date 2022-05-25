@@ -1,0 +1,209 @@
+.custom--modal {
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    z-index: 11111;
+    transform: translateX(-50%);
+    max-width: 500px;
+    background: $white;
+    padding: 30px 15px;
+    border-radius: 5px;
+    .modal-footer,
+    .modal-header {
+        background: $section-bg;
+        .modal-title {
+            margin: 0;
+        }
+        .btn-close {
+            background: transparent;
+            font-size: 20px;
+            line-height: 1;
+            color: $danger-color;
+            opacity: 1;
+        }
+        button {
+            border: none;
+            width: auto;
+            &:hover {
+                color: $white;
+            }
+        }
+    }
+    .modal-body {
+        padding: 10px;
+        background: $body-bg;
+    }
+}
+.custom--table {
+    margin: 0;
+    border: none;
+    background: $section-bg;
+    thead {
+        tr {
+            th {
+                font-family: $heading;
+                padding: 15px 10px;
+                text-align: center;
+                color: $primary-color;
+                border: none;
+                background: $title-color;
+                font-size: 18px;
+                &:not(:last-child) {
+                    border-right: 1px solid rgba($color:$white-color, $alpha:.1);
+                }
+            }
+        }
+    }
+    tbody {
+        text-align: center;
+        font-size: 14px;
+        tr {
+            @include transition;
+            &:nth-child(odd) {
+                background: rgba($color:$base-color,$alpha:.05);
+            }
+            &:hover {
+                background: $white;
+            }
+            td {
+                .badge {
+                    text-transform: capitalize;
+                }
+                color: $body-color;
+                vertical-align: middle;
+                padding: 12px 5px;
+                border-width: 1px;
+                border-color: rgba($color:$base-color, $alpha: .1);
+                .date {
+                    font-size: 14px;
+                }
+                a {
+                    color: $body-color;
+                }
+                .btn {
+                    color: $white;
+                }
+            }
+        }
+    }
+    .details {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    @include breakpoint(max-lg) {
+        thead {
+            display: none;
+        }
+        tbody {
+            tr {
+                display: block;
+                td {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    border-collapse: collapse;
+                    padding: 10px 15px;
+                    &::before {
+                        content: attr(data-label);
+                        font-family: $heading;
+                        font-size: 17px;
+                        color: $title-color;
+                        font-weight: 600;
+                    }
+                }
+                &:nth-child(even) {
+                    background: rgba($color:$white-color,$alpha:.8);
+                }
+            }
+        }
+    }
+}
+.custom--card {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 15px 10px;
+    border-color: rgba($color:$base-color, $alpha: .1);
+    background: rgba($color:$light-color,$alpha:1);
+    @include shadow2;
+
+    * {
+        color: $white;
+    }
+    .card-header {
+        background: none;
+        border-bottom: none;
+        padding: 0;
+        width: 70px;
+        height: auto;
+        i {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: rgba($color:$primary-color,$alpha:.1);
+            color: $primary-color;
+            @include center;
+            font-size: 30px;
+
+        }
+    }
+    .card-body {
+        width: calc(100% - 70px);
+        padding-left: 15px;
+        padding: 0;
+
+        i {
+            position: absolute;
+            width: auto;
+            height: auto;
+            left: 0;
+            top: 0;
+            font-size: 50px;
+            opacity: .1;
+        }
+        .card-title {
+            margin-bottom: 5px;
+            color: $primary-color;
+        }
+        p, span {
+            font-size: 18px;
+            color: $secondary-color;
+        }
+        .btn, button {
+            margin-top: 15px;
+        }
+    }
+}
+@include breakpoint(max-xl) {
+    .custom--card {
+        .card-header {
+            i {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    }
+}
+.custom--badge {
+    background: $theme-two;
+    padding: 4px 10px !important;
+    color: $white !important;
+    border-radius: 5px;
+    font-size: 14px;
+    &:hover {
+        color: $white;
+    }
+    &.badge--sm {
+        padding: 2px 6px !important;
+        font-size: 12px;
+    }
+    &.badge--lg {
+        padding: 7px 12px !important;
+        font-size: 15px;
+    }
+    .badge--cap {
+        border-radius: 15px;
+    }
+}

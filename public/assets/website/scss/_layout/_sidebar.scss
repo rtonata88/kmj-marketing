@@ -1,0 +1,156 @@
+// Blog Sidebar
+.blog-sidebar {
+    padding-left: 10px;
+    @include breakpoint(max-lg) {
+        padding-left: 0;
+    }
+    .sidebar-item { 
+        padding: 40px;
+        background: #f5f3fd;
+        margin-bottom: 60px;
+        @include breakpoint(max-sm) {
+            padding: 35px 20px;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+        .search-bar {
+            position: relative;
+            .form--control  {
+                padding-right: 60px;
+            }
+            .search-button {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: auto;
+                height: 100%;
+                padding: 10px 20px;
+                font-size: 22px;
+                background: $white;
+                color: $dark;
+            }
+        }
+        .item-inner {
+            padding: 23px;
+            background: $white;
+            .title {
+                margin-bottom: 15px;
+            }
+            @include breakpoint(max-sm) {
+                padding: 0 ;
+                background: #f5f3fb;
+            }
+        }
+        .lastest-post-item {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid $border-color;
+            &:last-child {
+                padding-bottom: 0;
+                margin-bottom: 0;
+                border: 0;
+            }
+            .thumb {
+                width: 80px;
+                height: 80px;
+                @include breakpoint(max-sm) {
+                    width: 60px;
+                    height: 60px;
+                }
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            .content {
+                width: calc(100% - 80px);
+                padding-left: 15px;
+                .title {
+                    font-size: 16px !important;
+                    @include breakpoint(max-sm) {
+                        margin-bottom: 5px;
+                    }
+                    a {
+                        @include text-wrap;
+                    }
+                }
+                .meta-post {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-top: 5px;
+                    justify-content: space-between;
+                    li {
+                        padding: 1px 0;
+                        font-size: 13px;
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+        .category-wrapper {
+            ul {
+                .category-item {
+                    width: 100%;
+                    padding: 10px 0;
+                    border-bottom: 1px solid $border-color;
+                    &:last-child {
+                        border: 0;
+                    }
+                    a {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .archives {
+            padding-bottom: 80px;
+        }
+        .news-tags {
+            .tags {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .tag-item {
+                width: auto;
+                padding: 4px;
+                a {
+                    padding: 8px 15px;
+                    border: 1px solid $border-color;
+                    &:hover {
+                        border-color: $base-color;
+                    }
+                }
+            }
+        }
+    }
+}
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 60px;
+    li {
+        a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba($dark, .1);
+            border-radius: 50%;
+            @include center;
+            margin: 5px;
+            font-weight: 500;
+            &.active, &:hover {
+                background: $primary-color;
+                border-color: $primary-color;
+                color: $white;
+            }
+        }
+    }
+}
+// Blog Sidebar

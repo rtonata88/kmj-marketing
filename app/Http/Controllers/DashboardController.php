@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Account;
 use App\AccountTransaction;
 use App\Investor;
+use App\Models\InvestorDeposit;
+use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 
 use Auth;
@@ -26,7 +28,17 @@ class DashboardController extends Controller
             
             return view('dashboard', compact('noticeMessages', 'accounts'));
         } else {
-            return view('admin.dashboard');
+            $investors = Investor::where('status', 1)->count() ?? 0;
+
+            $deposits = InvestorDeposit::sum('amount');
+
+            $withdraws = Withdrawal::all();
+
+            $payouts = $withdraws->where('status', 'processed')->sum('payout_amount');
+
+            $pending_withdraws = $withdraws->where('status', 'pending');
+            
+            return view('admin.dashboard', compact('investors', 'deposits', 'payouts', 'pending_withdraws'));
         }
     }
 

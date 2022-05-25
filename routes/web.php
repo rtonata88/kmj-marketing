@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('website.index');
 });
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/admin/deposits', App\Http\COntrollers\InvestorDepositsController::class);
@@ -43,4 +43,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/transactions', [App\Http\Controllers\AccountTransactionController::class, 'index'])->name('transactions');
 });
+
+Route::get('/home', [App\Http\Controllers\WebsiteController::class, 'home'])->name('home');
+Route::get('/about', [App\Http\Controllers\WebsiteController::class, 'about'])->name('about');
+Route::get('/plans', [App\Http\Controllers\WebsiteController::class, 'plans'])->name('plans');
+Route::get('/contact', [App\Http\Controllers\WebsiteController::class, 'contact'])->name('contact');
+
 require __DIR__.'/auth.php';

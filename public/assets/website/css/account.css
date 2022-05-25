@@ -1,0 +1,15 @@
+.account-thumb img {
+  width: 100%;
+}
+
+.account-form .form--group {
+  position: relative;
+}
+
+.account-form .form--group i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}

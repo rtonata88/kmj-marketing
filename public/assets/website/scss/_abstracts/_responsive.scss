@@ -1,0 +1,100 @@
+
+@media screen and (max-width:1199px) {
+    h2 {
+        font-size: 36px !important;
+    }
+    h3 {
+        font-size: 26px !important;
+    }
+    h4 {
+        font-size: 22px !important;
+    }
+    h5 {
+        font-size: 20px !important;
+    }
+    
+    .padding-top {
+        padding-top: 100px !important;
+    }
+    .padding-bottom {
+        padding-bottom: 100px !important;
+    }
+}
+  
+@media screen and (max-width:991px) {
+    h2 {
+        font-size: 34px !important;
+    }
+    .wow {
+        animation: none;
+    }
+}
+
+@media screen and (max-width:767px) {
+    h1 {
+        font-size: 42px !important;
+    }
+    h2 {
+        font-size: 32px !important;
+    }
+    .padding-top {
+        padding-top: 80px !important;
+    }
+    .padding-bottom {
+        padding-bottom: 95px !important;
+    }
+  
+    .section-padding {
+        padding-top: 80px !important;
+        padding-bottom: 80px !important;
+    }
+    
+}
+
+@media screen and (max-width:575px) {
+    h1 {
+        font-size: 36px !important;
+    }
+    h2 {
+        font-size: 30px !important;
+    }
+    h3 {
+        font-size: 24px !important;
+    }
+    h4 {
+        font-size: 22px !important;
+    }
+    h5 {
+        font-size: 18px !important;
+    }
+    p {
+        font-size: 15px !important;
+    }
+    
+    .padding-top {
+        padding-top: 70px !important;
+    }
+    .padding-bottom {
+        padding-bottom: 85px !important;
+    }
+    .section-padding {
+        padding-top: 70px !important;
+        padding-bottom: 70px !important;
+    }
+    .container, .container-fluid {
+        max-width: 450px !important;
+        margin: 0 auto !important;
+    }
+    .section-header {
+        margin-bottom: 40px !important;
+    }
+    .section-header-two {
+        margin-bottom: 25px !important;
+    }
+    .logo {
+        max-width: 100px !important;
+    }
+    .cmn--btn, .cmn--btn-2 {
+        font-size: 14px;
+    }
+}
