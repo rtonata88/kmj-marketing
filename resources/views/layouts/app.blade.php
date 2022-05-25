@@ -8,26 +8,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{{env('APP_NAME')}}</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="{{asset('new/assets/favicon/apple-icon-57x57.png')}}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{asset('new/assets/favicon/apple-icon-60x60.png')}}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('new/assets/favicon/apple-icon-72x72.png')}}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('new/assets/favicon/apple-icon-76x76.png')}}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('new/assets/favicon/apple-icon-114x114.png')}}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{asset('new/assets/favicon/apple-icon-120x120.png')}}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{asset('new/assets/favicon/apple-icon-144x144.png')}}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{asset('new/assets/favicon/apple-icon-152x152.png')}}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('new/assets/favicon/apple-icon-180x180.png')}}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{asset('new/assets/favicon/android-icon-192x192.png')}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('new/assets/favicon/favicon-32x32.png')}}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('new/assets/favicon/favicon-96x96.png')}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('new/assets/favicon/favicon-16x16.png')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css" />
 
     <link rel="manifest" href="{{asset('new/assets/favicon/manifest.json')}}">
-    <meta name="msapplication-TileColor" content="#ffffff')}}">
-    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png')}}">
-    <meta name="theme-color" content="#ffffff">
+
     <!-- Main styles for this application-->
     <link href="{{asset('new/css/style.css')}}" rel="stylesheet">
 
@@ -43,7 +28,7 @@
 <body class="c-app">
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
         <div class="c-sidebar-brand d-lg-down-none">
-            <span class="text-uppercase font-weight-bold">KMJ</span>
+            <span class="text-uppercase font-weight-bold">KMJ Network Marketing</span>
         </div>
         <ul class="c-sidebar-nav">
             <li class="c-sidebar-nav-item">
@@ -57,63 +42,63 @@
             @if(Auth::user()->user_type == 'investor')
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/accounts">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-group')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-bank')}}"></use>
                     </svg>My Accounts</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/withdrawals">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-cash')}}"></use>
                     </svg> Withdraw Requests</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/transfer">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-share')}}"></use>
                     </svg> Transfers</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/network/chart-view">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-ethernet')}}"></use>
                     </svg>My Network</a>
             </li>
             @endif
             @if(Auth::user()->user_type == 'admin')
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/deposits">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-wallet')}}"></use>
                     </svg> Deposits</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/transfer">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-share')}}"></use>
                     </svg> Transfers</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/withdrawals">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-cash')}}"></use>
                     </svg> Withdraw Requests</a>
             </li>
             @endif
             <li class="c-sidebar-nav-title">PROFILE MANAGEMENT</li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/investor">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-user')}}"></use>
                     </svg>Update Info</a>
             </li>
             @if(Auth::user()->user_type == 'admin')
             <li class="c-sidebar-nav-title">SETTINGS</li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/stages">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-cog')}}"></use>
                     </svg>Stages</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/stage-rewards">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-cog')}}"></use>
                     </svg>Stage Rewards</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/other-settings">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-book')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-cog')}}"></use>
                     </svg>More settings</a>
             </li>
             @endif
