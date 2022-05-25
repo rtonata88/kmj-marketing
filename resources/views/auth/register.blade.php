@@ -1,4 +1,4 @@
-@extends('layouts.login')
+@extends('layouts.register')
 
 @section('content')
 <p class="text-muted text-center">Register a new account</p>

@@ -39,7 +39,7 @@
                         @empty
                         <tr>
                             <td colspan="7">
-                                You do not have any withdraw requests
+                                You do not have anybody under you
                             </td>
                         </tr>
                         @endforelse
