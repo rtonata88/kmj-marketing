@@ -11,7 +11,7 @@
                         <a href="/">Home</a>
                     </li>
                     <li>
-                        <span>Regisgration</span>
+                        <span>Registration</span>
                     </li>
                 </ul>
             </div>
@@ -82,25 +82,22 @@
                         <hr>
                         <div class="form--group">
                             {{Form::text('username', null, ['class' => 'form--control', 'placeholder' => 'Your username'])}}
+                            <input type="hidden" name="password" value="Wealth@2022" class="form--control" placeholder="Password" />
+                            <input type="hidden" name="password_confirmation" value="Wealth@2022" class="form--control" placeholder="Re-type password" />
+                            <span>The default password is: <strong>Wealth@2022</strong></span>
                         </div>
                         <div class="form--group">
-                            <input type="password" name="password" class="form--control" placeholder="Password" />
+                            <button type="submit" class="custom-button">REGISTER</button>
                         </div>
-                        <div class="form--group">
-                            <input type="password" name="password_confirmation" class="form--control" placeholder="Re-type password" />
-                        </div>
-                <div class="form--group">
-                    <button type="submit" class="custom-button">REGISTER</button>
-                </div>
-                </form>
-                <span class="subtitle">Already you have an account here?</span>
-                <a href="{{route('login')}}" class="create-account theme-four">Sign in</a>
-                <div class="shape">
-                    <img src="./assets/website/images/account/shape.png" alt="account">
+                    </form>
+                    <span class="subtitle">Already you have an account here?</span>
+                    <a href="{{route('login')}}" class="create-account theme-four">Sign in</a>
+                    <div class="shape">
+                        <img src="./assets/website/images/account/shape.png" alt="account">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </section>
 <!-- Account Section Ends Here -->

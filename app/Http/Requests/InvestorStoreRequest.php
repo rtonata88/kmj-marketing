@@ -24,7 +24,10 @@ class InvestorStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'referrer_username' => 'required',
+            'name' => 'required',
+            'mobile_number' => 'required',
+            'username' => ['required', 'unique:users'],
         ];
     }
 }

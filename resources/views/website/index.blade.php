@@ -19,7 +19,7 @@
                     <h1 class="banner-title">KMJ <span class="text--base">Network </span><span> Marketing</span></h1>
                     <span class="subtitle">People's only hope, your way to financial freedom.</span>
                     <div class="button-group d-flex flex-wrap align-items-center">
-                        <a href="sign-up.html" class="cmn--btn btn--secondary">Join now</a>
+                        <a href="{{route('register')}}" class="cmn--btn btn--secondary">Join now</a>
                         <!-- <a href="https://www.youtube.com/watch?v=WOb4cj7izpE" class="video-button"><i class="las la-play"></i></a> -->
                     </div>
                 </div>

@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\CreditInvestorProfitAccount;
+use App\Actions\CreditRegistrationAccount;
+use App\Actions\DebitRegistrationAccount;
+use App\Actions\TransferRegistrationCredit;
 use App\Country;
 use App\Investor;
 use App\Http\Requests\InvestorUpdateRequest;
 use App\Http\Requests\InvestorStoreRequest;
+use App\Models\User;
 use App\Region;
+use App\Services\CreateInvestorProfileService;
+use App\Services\GetReferrerInvestor;
+use App\Services\UpgradeAccountStageService;
 use App\Town;
 use JunaidQadirB\Cray\Traits\RedirectsWithFlash;
 use Illuminate\Routing\Controller;
@@ -36,10 +44,21 @@ class InvestorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(GetReferrerInvestor $referrerInvestor)
     {
         $investor = new Investor();
-        return view('.investors.create', compact('investor'));
+
+        $countries = Country::pluck('name', 'id');
+
+        $regions = Region::pluck('name', 'id');
+
+        $towns = Town::pluck('name', 'id');
+
+        $investor = Auth::user()->investor;
+
+        $referrerInvestor = $referrerInvestor->referrerInvestor($investor);
+        
+        return view('.investors.create', compact('investor', 'countries', 'regions', 'towns', 'referrerInvestor'));
     }
 
     /**
@@ -48,10 +67,39 @@ class InvestorController extends Controller
      * @param  InvestorStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(InvestorStoreRequest $request)
+    public function store(InvestorStoreRequest $request, TransferRegistrationCredit $transferRegistrationCredit, CreateInvestorProfileService $createInvestor,UpgradeAccountStageService $upgradeAccount, CreditInvestorProfitAccount $creditAccount)
     {
-        Investor::create($request->except('_token'));
-        return $this->success('Investor added successfully!', 'investors.index');
+        $referrerInvestor = Investor::find($request->referrer_investor);
+
+        $investor = Auth::user()->investor;
+        
+        $user = User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $transfer = $transferRegistrationCredit->execute($investor, $referrerInvestor);
+
+        if ($transfer["status"] == 'failed'){
+            $user->delete();
+
+            return back()->withInput()->withErrors(["referrer_username" => $transfer['reason']]);
+        }
+
+        $createNewInvestor = $createInvestor->createInvestorProfile($user->id, $request, $referrerInvestor);
+
+        if ($createNewInvestor['status'] == 'failed') {
+            $user->delete();
+
+            return back()->withInput()->withErrors(["referrer_username" => $createNewInvestor['reason']]);
+        }
+        
+        $upgradeAccount->upgradeAncestorAccounts($createNewInvestor['investor']->ancestors->reverse());
+        
+        $creditAccount->execute($createNewInvestor['investor']);
+
+        return redirect()->route('network.chart');
     }
 
     /**
@@ -110,15 +158,10 @@ class InvestorController extends Controller
         return $this->success('Investor updated successfully!', 'investor.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Investor  $investor
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Investor $investor)
+    public function registrations()
     {
-        $investor->delete();
-        return $this->success('Investor deleted successfully!', 'investors.index');
+        $investors = Investor::paginate(50);
+        
+        return view('admin.investors.index', compact('investors'));
     }
 }

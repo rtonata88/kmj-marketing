@@ -20,6 +20,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('/admin/deposits', App\Http\Controllers\InvestorDepositsController::class);
 
     Route::get('/withdrawals/process/{id}', [App\Http\Controllers\WithdrawalController::class, 'process']);
+
+    Route::get('/registrations', [App\Http\Controllers\InvestorController::class, 'registrations']);
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -38,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/bank-info/{id}', [App\Http\Controllers\BankController::class, 'getBankBranchesByBankId']);
 
     Route::get('/registration-transactions/{investor_id}', [App\Http\Controllers\RegistrationCreditController::class, 'statement']);
-    Route::get('/network/chart-view', [App\Http\Controllers\NetworkController::class, 'chartView']);
+    Route::get('/network/chart-view', [App\Http\Controllers\NetworkController::class, 'chartView'])->name('network.chart');
     Route::get('/network/grid-view', [App\Http\Controllers\NetworkController::class, 'gridView']);
 
     Route::get('/transactions', [App\Http\Controllers\AccountTransactionController::class, 'index'])->name('transactions');

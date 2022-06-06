@@ -14,6 +14,9 @@
     <div class="col-md-12 col-xs-12">
         <div class="card">
             <div class="card-header">
+                <a href="{{route('investor.create')}}" class="btn btn-primary">
+                    Add new sign up
+                </a>
                 <a href="/network/grid-view" class="btn btn-outline-info">
                     Grid view
                 </a>

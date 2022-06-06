@@ -903,7 +903,6 @@ html:not([dir="rtl"]) .alert-dismissible .close {
   -ms-flex-pack: center;
   justify-content: center;
   border-radius: 50em;
-  width: 36px;
   height: 36px;
   font-size: 14.4px;
 }

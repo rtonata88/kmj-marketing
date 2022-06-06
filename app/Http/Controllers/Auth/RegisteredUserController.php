@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Account;
-use App\Country;
-use App\Events\CreateInvestor;
-use App\Http\Controllers\Controller;
-use App\Investor;
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use App\Region;
 use App\Town;
-use Illuminate\Auth\Events\Registered;
+use App\Stage;
+use App\Region;
+use App\Country;
+use App\Models\User;
+use App\OtherSetting;
+use App\StageRequirement;
+use App\AccountTransaction;
+use App\Actions\CreditInvestorProfitAccount;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use App\Models\RegistrationCredit;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
+use App\Services\CreateInvestorProfileService;
+use App\Services\UpgradeAccountStageService;
 
 class RegisteredUserController extends Controller
 {
@@ -43,69 +48,43 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request, CreateInvestorProfileService $createInvestor, UpgradeAccountStageService $upgradeAccount, CreditInvestorProfitAccount $creditAccount)
     {
         $request->validate([
+            'referrer_username' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         
-        if(isset($request->referrer_username)){
-            $referrerInvestor = $this->getReferrerInvestor($request->referrer_username);
+        $referrerInvestor = $createInvestor->getReferrerInvestor($request->referrer_username);
 
-            if(is_null($referrerInvestor)){
-                return back()->withInput()->withErrors(["referrer_username" => "Invalid referrer username provided."]);
-            }
-
-        } else {
-            $referrerInvestor = null;
+        if(is_null($referrerInvestor)){
+            return back()->withInput()->withErrors(["referrer_username" => "Invalid referrer username provided."]);
         }
         
-
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'password' => Hash::make($request->password),
         ]);
 
-        $investor = $this->createInvestorProfile($user->id, $request, $referrerInvestor);
+        $createNewInvestor = $createInvestor->createInvestorProfile($user->id, $request, $referrerInvestor);
 
-        if(!$investor){
+        if ($createNewInvestor['status'] == 'failed') {
             $user->delete();
-            return back()->withInput()->withErrors(["referrer_username" => "The provided refferer username already has two people under them."]);
+
+            return back()->withInput()->withErrors(["referrer_username" => $createNewInvestor['reason']]);
         }
+
+        $upgradeAccount->upgradeAncestorAccounts($createNewInvestor['investor']->ancestors);
+
+        $creditAccount->execute($createNewInvestor['investor']);
 
         event(new Registered($user));
 
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
-    }
-
-    private function createInvestorProfile($user_id, $request, $referrerInvestor){
-        if(is_null($referrerInvestor)){
-            return Investor::create(array_merge($request->all(), ['user_id' => $user_id]));
-        } else {
-            if($referrerInvestor->children()->count() == 2){
-                return false;
-            } else {
-                return $referrerInvestor->children()->create(array_merge($request->all(), ['user_id' => $user_id]));
-            }
-        }
-    }
-
-    private function getReferrerInvestor($referrer_username){
-        
-        $referrerUser = User::with('investor')
-                            ->select('id')
-                            ->where('username', $referrer_username)
-                            ->first();
-        
-        if($referrerUser){
-            return  $referrerUser->investor;
-        } else {
-            return null;
-        }
     }
 }

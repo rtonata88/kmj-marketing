@@ -41,7 +41,7 @@ class InvestorDepositsController extends Controller
 
         Session::flash('message', 'Deposit succesffuly captured on the system');
 
-        return redirect()->route('admin.deposits.index');
+        return redirect()->route('deposits.index');
     }
 
     public function edit($id){
