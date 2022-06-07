@@ -30,9 +30,19 @@ class UpgradeAccountStageService {
 
             $stageRequiredPeople = $stageRequirement->where('stage_id', $current_stage)->first();
 
-            $investorActiveChildren = $ancestor->descendants()->count();
+            $investorActiveChildren = $ancestor->descendants()
+                                               ->withDepth()
+                                               ->get();
+            
+            $requiredMembers = 0;
 
-            if ($investorActiveChildren >= $stageRequiredPeople->people) {
+            foreach ($investorActiveChildren as $child) {
+                if (($child->depth  - $ancestor->depth) <= 2) {
+                    $requiredMembers++;
+                }
+            }
+
+            if ($requiredMembers >= $stageRequiredPeople->people) {
                 
                 $this->applyAllProfits($ancestor, $stageRequirement);
 
@@ -45,18 +55,21 @@ class UpgradeAccountStageService {
 
         $stageRequirement = $stageRequirement->where('stage_id', $ancestor->stage_id)->first();
 
-        $children = $ancestor->descendants->where('stage_id', $ancestor->stage_id);
+        $children = $ancestor->descendants()->withDepth()->where('stage_id', $ancestor->stage_id);
         
         foreach ($children as $child) {
-            AccountTransaction::firstOrCreate([
-                'investor_id' =>  $ancestor->id,
-                'transaction_description' => "Stage " . $ancestor->stage_id . " Earning",
-                'descendant_id' => $child->id,
-                'stage_id' =>  $ancestor->stage_id,
-                'transaction_date' => date('Y-m-d'),
-                'debit_amount' => 0,
-                'credit_amount' => $stageRequirement->amount
-            ]);
+            
+            if (($child->depth  - $ancestor->depth) <= 2) {
+                AccountTransaction::firstOrCreate([
+                    'investor_id' =>  $ancestor->id,
+                    'transaction_description' => "Stage " . $ancestor->stage_id . " Earning",
+                    'descendant_id' => $child->id,
+                    'stage_id' =>  $ancestor->stage_id,
+                    'transaction_date' => date('Y-m-d'),
+                    'debit_amount' => 0,
+                    'credit_amount' => $stageRequirement->amount
+                ]);
+            }
         }
     }
 }

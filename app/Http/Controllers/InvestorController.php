@@ -95,7 +95,7 @@ class InvestorController extends Controller
             return back()->withInput()->withErrors(["referrer_username" => $createNewInvestor['reason']]);
         }
         
-        $upgradeAccount->upgradeAncestorAccounts($createNewInvestor['investor']->ancestors->reverse());
+        $upgradeAccount->upgradeAncestorAccounts($createNewInvestor['investor']->ancestors()->withDepth()->get()->reverse());
         
         $creditAccount->execute($createNewInvestor['investor']);
 

@@ -19,7 +19,7 @@ class DashboardController extends Controller
     }
     public function index(){
         $user = Auth::user();
-        
+
         if($user->user_type == 'investor'){
 
             $noticeMessages = $this->getDashboardNotices($user);
