@@ -41,13 +41,10 @@
                     <div class="section-header">
                         <h2 class="title mx-100">Company Ownership</h2>
                         <p class=" fadeInUp" data--delay=".6s">
-                            Established in January 2022, KMJ Network Marketing is a Namibian owned company that is making financial freedom possible for all Namibians through network marketing. Network marketing is a decades-old marketing model that involves person-to-person sales by independent representatives, often working from home. There are multiple levels of distribution as well as payouts occurring at each of those levels, which is why this marketing model is often referred to as multi-level marketing (MLM).
+                            KMJ Network Marketing was founded (established) in February 2022 by Michael Kalumba and Josephina Johannes and is a 100% Namibian owned entity. This makes financial freedom possible for all Namibians in network marketing. Network marketing is a business model that depends on person-to-person sales by independent representatives, often working from home.
                         </p>
                         <p class=" fadeInUp" data--delay=".6s">
-                            KMJ Network Marketing was founded by [insert name here]. We are a fully Namibian owned company with our head quarters in [Mention town name]. Our management consists of the CEO, Director, and Country Coordinators. We have a network of credit distributors and a great team of leaders.
-                        </p>
-                        <p class=" fadeInUp" data--delay=".6s">
-                            Since its establishment KMJ Network Marketing has gone viral, with members locally and internationally. We develop relationships that make a positive difference in our partner’s lives and work together, across boundaries to meet the needs of our partners and to help our Company win.
+                            KMJ Network Marketing consists of the CEO, Director, Finance Manager and Country Coordinators with its headquarters in Windhoek. KMJ Network Marketing is not just limited to Namibians, but to international market at large. This company is here to change many lives of the Namibian house and beyond our borders. Our target market is young or old, all ethnic groups.
                         </p>
                     </div>
                 </div>
@@ -59,7 +56,7 @@
 
 
 <!-- Investor Section Starts Here -->
-<section class="investor-section padding-bottom overflow-hidden">
+<!-- <section class="investor-section padding-bottom overflow-hidden">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-7">
@@ -118,7 +115,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- Investor Section Ends Here -->
 
 
@@ -143,7 +140,7 @@
                                     </div>
                                     <div class="faq-content">
                                         <p>
-                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis distinctio quas at, voluptates saepe asperiores nesciunt nulla dolor dolore alias! Saepe laboriosam aliquid, ullam nihil nostrum quibusdam iste expedita inventore?
+                                            To be one of the leading network market entity in Namibia and spill over beyond our borders.
                                         </p>
                                     </div>
                                 </div>
@@ -156,7 +153,7 @@
                                     </div>
                                     <div class="faq-content">
                                         <p>
-                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis distinctio quas at, voluptates saepe asperiores nesciunt nulla dolor dolore alias! Saepe laboriosam aliquid, ullam nihil nostrum quibusdam iste expedita inventore?
+                                            At KMJ, we value our customers and strive to always provide our customers with excellent customer service through innovative technology. KMJ ensures all our clients are each given opportunities while promoting teamwork and creating creative thinking among the networkers.
                                         </p>
                                     </div>
                                 </div>

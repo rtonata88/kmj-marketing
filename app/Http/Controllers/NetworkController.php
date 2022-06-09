@@ -11,7 +11,7 @@ class NetworkController extends Controller
     public function chartView(){
         $user = Auth::user();
 
-        $investor = $user->investor->withDepth()->first();
+        $investor = $user->investor;
 
         $network = [
             [
@@ -26,7 +26,7 @@ class NetworkController extends Controller
         $descendants = $investor->descendants()->withDepth()->get();
 
         foreach ($descendants as $descendant) {
-            if (($descendant->depth  - $investor->depth) <= 2) {
+           // if (($descendant->depth  - $investor->depth) <= 2) {
                 array_push($network, [
                     'id' => $descendant->id,
                     'pid' => $descendant->parent_id,
@@ -36,7 +36,7 @@ class NetworkController extends Controller
 
                 $last_parent = $descendant->parent_id;
                 $last_id = $descendant->id;
-            }
+            //}
         }
         //dd($network);
         $network = json_encode($network);

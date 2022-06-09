@@ -127,7 +127,7 @@
 <!-- Feature Section Ends Here -->
 
 <!-- Counter Section Starts Here -->
-<section class="counter-section padding-top">
+<!-- <section class="counter-section padding-top">
     <div class="container">
         <div class="section-header text-center">
             <span class="subtitle">Grow with us</span>
@@ -179,7 +179,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- Counter Section Ends Here -->
 
 

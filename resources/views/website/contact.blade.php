@@ -27,7 +27,7 @@
                     <div class="form--group">
                         <input type="tel" class="form--control" placeholder="Phone">
                     </div>
-                    
+
                     <div class="form--group">
                         <textarea class="form--control" cols="30" rows="10" placeholder="Message"></textarea>
                     </div>
@@ -58,8 +58,7 @@
                             </div>
                             <div class="contact-item-content">
                                 <h4 class="title">Office Address</h4>
-                                <p>USA, Callifornia 20, Firs
-                                    Avenue, Callifornia</p>
+                                <p>ERF 1620, Elizabeth Street Khomasdal</p>
                             </div>
                         </div>
                     </div>
@@ -72,8 +71,7 @@
                             </div>
                             <div class="contact-item-content">
                                 <h4 class="title">Email Address</h4>
-                                <a href="Mailto:mdudnfsddf@gmal.com">contact@example.com</a>
-                                <a href="Mailto:mdudnfsddf@gmal.com">info@example.com</a>
+                                <a href="Mailto:info@kmjnetwork.net">info@kmjnetwork.net</a>
                             </div>
                         </div>
                     </div>
@@ -84,8 +82,15 @@
                             </div>
                             <div class="contact-item-content">
                                 <h4 class="title">Contact Number</h4>
-                                <a href="Tel:90172834">(123) 456-7890 - 00521</a>
-                                <a href="Tel:90172834">(123) 456-7891 - 00626</a>
+                                <p>
+                                    +264 81 214 6522
+                                </p>
+                                <p>
+                                    +264 81 327 0589
+                                </p>
+                                <p>
+                                    +264 81 813 4571
+                                </p>
                             </div>
                         </div>
                     </div>

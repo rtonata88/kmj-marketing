@@ -171,8 +171,10 @@ class WithdrawalController extends Controller
     private function debitInvestorAccount($withdrawal){
         $account_transaction = new AccountTransaction();
         $account_transaction->investor_id = $withdrawal->investor_id;
-        $account_transaction->transaction_description = "Payout";
+        $account_transaction->transaction_description = "Payout Request";
         $account_transaction->transaction_date = date('Y-m-d');
+        $account_transaction->descendant_id = 0;
+        $account_transaction->stage_id = 0;
         $account_transaction->debit_amount = $withdrawal->payout_amount;
         $account_transaction->credit_amount = 0;
         $account_transaction->save();

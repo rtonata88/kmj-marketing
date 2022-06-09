@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="faq-content">
                                         <p>
-                                            6 member from stage 1 will follow you in this stage. you will get paid N$50 perdownline in this stage, and will move to Stage 3 Automatically.
+                                            6 members from stage 1 will follow you in this stage. you will get paid N$50 perdownline in this stage, and will move to Stage 3 automatically when your 1st 6 members from stage 2 move into stage 3.
                                         </p>
                                         <table class="table table-bordered deposit-table mt-5 bg-slate-300">
                                             <thead>
@@ -105,7 +105,7 @@
                                                 <tr>
                                                     <td class="text-center currency">1</td>
                                                     <td class="text-center currency">30</td>
-                                                    <td class="text-center currency">N$300.00</td>
+                                                    <td class="text-center currency">6 * N$50 = N$300.00</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center currency" colspan="2">Rewards</td>
@@ -123,6 +123,9 @@
                                         </div>
                                     </div>
                                     <div class="faq-content">
+                                        <p>
+                                            6 members from stage 2 will follow you in this stage. you will get paid N$250 perdownline in this stage, and will move to Stage 4 automatically when your 6 members from Stage 2 move into stage 4.
+                                        </p>
                                         <table class="table table-bordered deposit-table mt-5 bg-slate-300">
                                             <thead>
                                                 <tr>
@@ -134,7 +137,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-center currency">1</td>
-                                                    <td class="text-center currency">100</td>
+                                                    <td class="text-center currency">126</td>
                                                     <td class="text-center currency">N$1500.00</td>
                                                 </tr>
                                                 <tr>
@@ -153,6 +156,9 @@
                                         </div>
                                     </div>
                                     <div class="faq-content">
+                                        <p>
+                                            6 members from stage 3 will follow you in this stage. you will get paid N$700 perdownline in this stage, and will move to Stage 5 automatically when your 1st 6 members from stage 3 move into stage 4.
+                                        </p>
                                         <table class="table table-bordered deposit-table mt-5 bg-slate-300">
                                             <thead>
                                                 <tr>
@@ -164,7 +170,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-center currency">1</td>
-                                                    <td class="text-center currency">200</td>
+                                                    <td class="text-center currency">510</td>
                                                     <td class="text-center currency">N$4200.00</td>
                                                 </tr>
                                                 <tr>
@@ -185,6 +191,9 @@
                                         </div>
                                     </div>
                                     <div class="faq-content">
+                                        <p>
+                                            6 members from stage 4 will follow you in this stage. you will get paid N$2500 perdownline in this stage, and will move to Stage 6 automatically when your 1st 6 members from stage 4 move into stage 5.
+                                        </p>
                                         <table class="table table-bordered deposit-table mt-5 bg-slate-300">
                                             <thead>
                                                 <tr>
@@ -196,7 +205,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-center currency">1</td>
-                                                    <td class="text-center currency">300</td>
+                                                    <td class="text-center currency">2046</td>
                                                     <td class="text-center currency">N$15000.00</td>
                                                 </tr>
                                                 <tr>
@@ -216,6 +225,9 @@
                                         </div>
                                     </div>
                                     <div class="faq-content">
+                                        <p>
+                                            6 members from stage 5 will follow you in this stage. you will get paid N$4000 perdownline in this stage.
+                                        </p>
                                         <table class="table table-bordered deposit-table mt-5 bg-slate-300">
                                             <thead>
                                                 <tr>
@@ -227,7 +239,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-center currency">1</td>
-                                                    <td class="text-center currency">400</td>
+                                                    <td class="text-center currency">8190</td>
                                                     <td class="text-center currency">N$24000.00</td>
                                                 </tr>
                                                 <tr>

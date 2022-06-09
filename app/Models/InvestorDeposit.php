@@ -10,6 +10,7 @@ class InvestorDeposit extends Model
     use HasFactory;
 
     public function investor(){
+    
         return $this->belongsTo(\App\Investor::class);
     }
 

@@ -16,26 +16,23 @@ class CreditInvestorProfitAccount {
         
         $ancestors = $newInvestor->ancestors()->withDepth()->get();
 
-        foreach($ancestors as $ancestor){
-            $result = $ancestor->withDepth()->find($newInvestor->id);
+        foreach($ancestors as $ancestor){            
+            //info($result->toArray());
             
-            info($result->toArray());
-            
-            if(($result->depth  - $ancestor->depth) <= 2){
-
                 $stageRequirement = $stageRequirement->where('stage_id', $ancestor->stage_id)->first();
 
                 if($ancestor->stage_id == 1){
-                    AccountTransaction::firstOrCreate([
-                        'investor_id' =>  $ancestor->id,
-                        'transaction_description' => "Stage ". $ancestor->stage_id . " Earning",
-                        'descendant_id' => $newInvestor->id,
-                        'stage_id' =>  $ancestor->stage_id,
-                        'transaction_date' => date('Y-m-d'),
-                        'debit_amount' => 0,
-                        'credit_amount' => $stageRequirement->amount
-                    ]);
-
+                    if (($newInvestor->depth  - $ancestor->depth) <= 2) {
+                        AccountTransaction::firstOrCreate([
+                            'investor_id' =>  $ancestor->id,
+                            'transaction_description' => "Stage ". $ancestor->stage_id . " Earning",
+                            'descendant_id' => $newInvestor->id,
+                            'stage_id' =>  $ancestor->stage_id,
+                            'transaction_date' => date('Y-m-d'),
+                            'debit_amount' => 0,
+                            'credit_amount' => $stageRequirement->amount
+                        ]);
+                    }
                 } else {
                     $descendants = $ancestor->descendants;
 
@@ -53,7 +50,7 @@ class CreditInvestorProfitAccount {
                         ]);
                     }
                 }
-            }
+            
         }
     }
 }

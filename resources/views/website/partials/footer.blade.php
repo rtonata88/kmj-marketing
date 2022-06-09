@@ -69,33 +69,33 @@
                     <h4 class="widget-title">Investment Stages</h4>
                     <ul class="footer-links">
                         <li>
-                            <a href="investment-plan-01.html">
-
+                            <a href="{{route('plans')}}">
                                 <i class="las la-angle-double-right"></i>Stage 1</a>
                         </li>
                         <li>
-                            <a href="investment-plan-02.html">
-
+                            <a href="{{route('plans')}}">
                                 <i class="las la-angle-double-right"></i>
                                 Stage 2</a>
                         </li>
                         <li>
-                            <a href="investment-plan-03.html">
-
+                            <a href="{{route('plans')}}">
                                 <i class="las la-angle-double-right"></i>
                                 Stage 3 </a>
                         </li>
                         <li>
-                            <a href="investment-plan-02.html">
-
+                            <a href="{{route('plans')}}">
                                 <i class="las la-angle-double-right"></i>
                                 Stage 4</a>
                         </li>
                         <li>
-                            <a href="investment-plan-01.html">
-
+                            <a href="{{route('plans')}}">
                                 <i class="las la-angle-double-right"></i>
                                 Stage 5</a>
+                        </li>
+                        <li>
+                            <a href="{{route('plans')}}">
+                                <i class="las la-angle-double-right"></i>
+                                Stage 6</a>
                         </li>
                     </ul>
                 </div>
@@ -105,19 +105,19 @@
                     <h4 class="widget-title">Contact Information</h4>
                     <ul class="contact-info">
                         <li>
-                            Contact name, Town
+                            ERF 1620, Elizabeth Street Khomasdal
                         </li>
                         <li>
-                            Call Us Now 0812288787
+                            <strong>Contact Details</strong>
                         </li>
                         <li>
-                            <a href="mailto:demosupport@.com">Email 1</a>
+                            <strong>CEO </strong>:0812146522
                         </li>
                         <li>
-                            <a href="mailto:demosupport@.com">Email 2</a>
+                            <strong>Director </strong>: +264813270589
                         </li>
                         <li>
-                            <a href="mailto:demosupport@.com">Email 3</a>
+                            <strong>Country Coordinator </strong>: 0813457110
                         </li>
                     </ul>
                 </div>

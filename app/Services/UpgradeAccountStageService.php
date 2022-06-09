@@ -18,21 +18,23 @@ class UpgradeAccountStageService {
         return  $investor->stage_id;
     }
 
-    public function upgradeAncestorAccounts($ancestors)
+    public function upgradeAncestorAccounts($newInvestor)
     {
+        $ancestors = $newInvestor->ancestors()->withDepth()->get()->reverse();
+
         $last_stage = Stage::max('id');
 
         $stageRequirement = StageRequirement::select('stage_id', 'people', 'amount')->get();
 
         foreach ($ancestors as $ancestor) {
-
             $current_stage = $ancestor->stage_id;
 
             $stageRequiredPeople = $stageRequirement->where('stage_id', $current_stage)->first();
 
             $investorActiveChildren = $ancestor->descendants()
-                                               ->withDepth()
-                                               ->get();
+                                            ->withDepth()
+                                            ->where('stage_id','>=', $ancestor->stage_id)
+                                            ->get();
             
             $requiredMembers = 0;
 
@@ -41,13 +43,14 @@ class UpgradeAccountStageService {
                     $requiredMembers++;
                 }
             }
-
+            
             if ($requiredMembers >= $stageRequiredPeople->people) {
                 
                 $this->applyAllProfits($ancestor, $stageRequirement);
 
                 $this->upgrade($ancestor, $last_stage);
             }
+        
         }
     }
 
@@ -55,7 +58,7 @@ class UpgradeAccountStageService {
 
         $stageRequirement = $stageRequirement->where('stage_id', $ancestor->stage_id)->first();
 
-        $children = $ancestor->descendants()->withDepth()->where('stage_id', $ancestor->stage_id);
+        $children = $ancestor->descendants()->withDepth()->where('stage_id', $ancestor->stage_id)->get();
         
         foreach ($children as $child) {
             
