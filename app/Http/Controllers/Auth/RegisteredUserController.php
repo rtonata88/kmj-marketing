@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Models\RegistrationCredit;
 use App\Http\Controllers\Controller;
+use App\Investor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -77,9 +78,11 @@ class RegisteredUserController extends Controller
             return back()->withInput()->withErrors(["referrer_username" => $createNewInvestor['reason']]);
         }
 
-        $upgradeAccount->upgradeAncestorAccounts($createNewInvestor['investor']->ancestors);
+        $newInvestor = Investor::withDepth()->find($createNewInvestor['investor']->id);
 
-        $creditAccount->execute($createNewInvestor['investor']);
+        $upgradeAccount->upgradeAncestorAccounts($newInvestor);
+
+        $creditAccount->execute($newInvestor);
 
         event(new Registered($user));
 
