@@ -23,15 +23,21 @@ class CreditInvestorProfitAccount {
 
                 if($ancestor->stage_id == 1){
                     if (($newInvestor->depth  - $ancestor->depth) <= 2) {
-                        AccountTransaction::firstOrCreate([
-                            'investor_id' =>  $ancestor->id,
-                            'transaction_description' => "Stage ". $ancestor->stage_id . " Earning",
-                            'descendant_id' => $newInvestor->id,
-                            'stage_id' =>  $ancestor->stage_id,
-                            'transaction_date' => date('Y-m-d'),
-                            'debit_amount' => 0,
-                            'credit_amount' => $stageRequirement->amount
-                        ]);
+                        $account_transaction = AccountTransaction::where('investor_id', $ancestor->id)
+                                                                ->where('descendant_id', $newInvestor->id)
+                                                                ->where('stage_id', $ancestor->stage_id)
+                                                                ->first();
+                        if(!$account_transaction){
+                            AccountTransaction::create([
+                                'investor_id' =>  $ancestor->id,
+                                'transaction_description' => "Stage ". $ancestor->stage_id . " Earning",
+                                'descendant_id' => $newInvestor->id,
+                                'stage_id' =>  $ancestor->stage_id,
+                                'transaction_date' => date('Y-m-d'),
+                                'debit_amount' => 0,
+                                'credit_amount' => $stageRequirement->amount
+                            ]);
+                        }
                     }
                 } else {
                     $descendants = $ancestor->descendants;

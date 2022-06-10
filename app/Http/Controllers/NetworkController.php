@@ -23,7 +23,7 @@ class NetworkController extends Controller
         $last_parent = 0;
         $last_id = 0;
 
-        $descendants = $investor->descendants()->withDepth()->get();
+        $descendants = $investor->descendants()->with('stage')->withDepth()->get();
 
         foreach ($descendants as $descendant) {
             //if (($descendant->depth  - $investor->depth) <= 2) {

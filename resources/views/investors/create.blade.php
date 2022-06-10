@@ -44,7 +44,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         {{Form::label('mobile_number', 'Mobile number')}}
-                        {{Form::text('mobile_number', null, ['class' => 'form-control'])}}
+                        {{Form::text('mobile_number', 0, ['class' => 'form-control'])}}
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -80,7 +80,7 @@
                         <span>The default password is: <strong>Wealth@2022</strong></span>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success"><span class="fa fa-check-circle"></span> Save</button>
+                <button type="submit" class="btn btn-success"><span class="fa fa-check-circle"></span> Register</button>
                 <a href="/network/chart-view" class="btn"><span class="fa fa-ban"></span> Cancel</a>
                 {!! Form::close() !!}
             </div>
