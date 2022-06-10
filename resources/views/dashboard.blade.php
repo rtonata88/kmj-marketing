@@ -30,6 +30,26 @@
         @endforeach
         @endif
     </div>
+    <div class="col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-body p-3 d-flex align-items-center">
+                <div class="bg-primary p-3 mfe-3">
+                    <svg class="c-icon c-icon-xl">
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-group')}}"></use>
+                    </svg>
+                </div>
+                <div>
+                    <div class="text-value text-primary">{{Auth::user()->investor->descendants()->count()}}</div>
+                    <div class="text-muted text-uppercase font-weight-bold">Total Members</div>
+                </div>
+            </div>
+            <div class="card-footer px-3 py-2">
+                <a class="text-muted d-flex justify-content-between align-items-center" href="/network/grid-view"><span class="small font-weight-bold">
+                        My Network
+                </a></span>
+            </div>
+        </div>
+    </div>
     @foreach($accounts as $account)
     <div class="col-md-6 col-sm-12">
         <div class="card">
