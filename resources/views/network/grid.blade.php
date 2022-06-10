@@ -24,6 +24,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
+                            <th>Username</th>
                             <th>Current Stage</th>
                             <th>Sign ups</th>
                         </tr>
@@ -33,6 +34,7 @@
                         <tr>
                             <td>{{$index + 1}}</td>
                             <td>{{$descendant->name}}</td>
+                            <td>{{$descendant->user->username}}</td>
                             <td>{{$descendant->stage->name}}</td>
                             <td>{{$descendant->children()->count()}}</td>
                         </tr>
