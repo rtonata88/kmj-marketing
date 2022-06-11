@@ -26,7 +26,7 @@
                             <th>Name</th>
                             <th>Username</th>
                             <th>Current Stage</th>
-                            <th>Sign ups</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,7 @@
                             <td>{{$descendant->name}}</td>
                             <td>{{$descendant->user->username}}</td>
                             <td>{{$descendant->stage->name}}</td>
-                            <td>{{$descendant->children()->count()}}</td>
+                            <td> <a href="/child-network/{{ $descendant->id }}">Show Network</a> </td>
                         </tr>
                         @empty
                         <tr>

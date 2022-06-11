@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/registration-transactions/{investor_id}', [App\Http\Controllers\RegistrationCreditController::class, 'statement']);
     Route::get('/network/chart-view', [App\Http\Controllers\NetworkController::class, 'chartView'])->name('network.chart');
     Route::get('/network/grid-view', [App\Http\Controllers\NetworkController::class, 'gridView']);
+    Route::get('/child-network/{id}', [App\Http\Controllers\NetworkController::class, 'showNetwork']);
 
     Route::get('/transactions', [App\Http\Controllers\AccountTransactionController::class, 'index'])->name('transactions');
 });
