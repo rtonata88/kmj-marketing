@@ -23,9 +23,9 @@ class WithdrawalController extends Controller
         $user = Auth::user();
 
         if($user->user_type == 'investor'){
-            $withdrawals = Withdrawal::where('investor_id', $user->investor->id)->get();
+            $withdrawals = Withdrawal::where('investor_id', $user->investor->id)->paginate(25);
         } else {
-             $withdrawals = Withdrawal::paginate(25);
+            $withdrawals = Withdrawal::where('status','<>','canceled')->paginate(25);
         }
 
         return view('withdrawals.index', compact('withdrawals'));
@@ -168,6 +168,20 @@ class WithdrawalController extends Controller
         return redirect()->route('withdrawals.index');
     }
 
+    public function cancel($id)
+    {
+        $withdrawal = Withdrawal::find($id);
+
+        $withdrawal->status = 'canceled';
+        $withdrawal->process_date = date('Y-m-d');
+        $withdrawal->processed_by = Auth::user()->id;
+        $withdrawal->save();
+
+        Session::flash('message', "Withdrawal request canceled succussfully.");
+
+        return redirect()->route('withdrawals.index');
+    }
+
     private function debitInvestorAccount($withdrawal){
         $account_transaction = new AccountTransaction();
         $account_transaction->investor_id = $withdrawal->investor_id;
@@ -175,7 +189,7 @@ class WithdrawalController extends Controller
         $account_transaction->transaction_date = date('Y-m-d');
         $account_transaction->descendant_id = 0;
         $account_transaction->stage_id = 0;
-        $account_transaction->debit_amount = $withdrawal->payout_amount;
+        $account_transaction->debit_amount = $withdrawal->requested_amount;
         $account_transaction->credit_amount = 0;
         $account_transaction->save();
     }

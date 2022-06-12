@@ -118,7 +118,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($pending_withdraws as $withdrawal)
+                        @forelse($pending_withdraws->take(10) as $withdrawal)
                         <tr>
                             @if(Auth::user()->user_type == 'admin')
                             <td>{{$withdrawal->investor->user->username}}</td>
@@ -187,7 +187,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($pending_claims as $claim)
+                        @forelse($pending_claims->take(10) as $claim)
                         <tr>
                             <td>{{$claim->investor->name}}</td>
                             <td>{{$claim->investor->user->username}}</td>

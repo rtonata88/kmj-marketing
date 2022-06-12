@@ -52,6 +52,7 @@
                     </tbody>
                 </table>
             </div>
+            {{$deposits->links()}}
         </div>
     </div>
 </div>

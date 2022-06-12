@@ -67,6 +67,7 @@
                     </tbody>
                 </table>
             </div>
+            {{$claims->links()}}
         </div>
     </div>
 </div>

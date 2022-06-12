@@ -40,6 +40,7 @@
                         <tr>
                             @if(Auth::user()->user_type == 'admin')
                             <th>Name</th>
+                            <th>Username</th>
                             <th>Contact number</th>
                             @endif
                             <th>Requested Date</th>
@@ -55,6 +56,7 @@
                         <tr>
                             @if(Auth::user()->user_type == 'admin')
                             <td>{{$withdrawal->investor->name}}</td>
+                            <td>{{$withdrawal->investor->user->username}}</td>
                             <td>{{$withdrawal->investor->mobile_number}}</td>
                             @endif
                             <td>{{$withdrawal->request_date}}</td>
@@ -69,6 +71,11 @@
                                 @endif
                                 @if($withdrawal->status == 'processed')
                                 <span class="badge badge-success">
+                                    {{$withdrawal->status}}
+                                </span>
+                                @endif
+                                @if($withdrawal->status == 'canceled')
+                                <span class="badge badge-danger">
                                     {{$withdrawal->status}}
                                 </span>
                                 @endif
@@ -99,6 +106,7 @@
                     </tbody>
                 </table>
             </div>
+            {{$withdrawals->links()}}
         </div>
     </div>
 </div>

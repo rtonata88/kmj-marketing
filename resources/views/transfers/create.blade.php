@@ -30,7 +30,7 @@
             <div class="card-body">
                 <div class="col-md-12">
                     <div class="form-group">
-                        {{Form::label('available_balance', 'Avalaible Transfer Credit (N$)')}}
+                        {{Form::label('available_balance', 'Available Transfer Credit (N$)')}}
                         {{Form::text('available_balance', $available_balance, ['class' => 'form-control', 'readonly', 'id'=>'available-credit'])}}
                     </div>
                 </div>

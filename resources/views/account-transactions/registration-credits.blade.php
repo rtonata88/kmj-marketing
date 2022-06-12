@@ -17,6 +17,9 @@
         <div class="card">
             <div class="card-header">
                 <strong>Registration Account transactions</strong> | <a href="{{route('transfer.create')}}"> Transfer request</a> | <a href="{{route('accounts.index')}}"> Accounts</a>
+                <a href="{{route('transfer.create')}}" class="btn btn-primary">
+                    New transfer request
+                </a>
             </div>
             <div class="card-body">
                 @if(Session::has('flash_message'))

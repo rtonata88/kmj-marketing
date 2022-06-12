@@ -36,7 +36,7 @@ class TransferController extends Controller
         $investor = $user->investor;
 
         if($user->user_type == 'admin'){
-            $available_balance = 10000;
+            $available_balance = 100000;
         } else {
             $available_balance = $this->calculateAvailableBalance($investor);
         }
