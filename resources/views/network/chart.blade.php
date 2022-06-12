@@ -18,10 +18,16 @@
                     Add New Member
                 </a>
                 <a href="/network/grid-view" class="btn btn-outline-info">
-                    Grid view
+                    List view
                 </a>
             </div>
             <div class="card-body">
+                @if(Session::has('message'))
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{ Session::get('message') }}
+                </div>
+                @endif
                 <input type="hidden" value="{{$network}}" id="data">
                 <div style="width:100%; height:700px;" id="network"></div>
             </div>

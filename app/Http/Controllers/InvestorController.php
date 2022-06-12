@@ -21,6 +21,7 @@ use Illuminate\Routing\Controller;
 
 use Auth;
 use Hash;
+use Session;
 class InvestorController extends Controller
 {
     use RedirectsWithFlash;
@@ -99,6 +100,8 @@ class InvestorController extends Controller
         $upgradeAccount->upgradeAncestorAccounts($newInvestor);
         
         $creditAccount->execute($newInvestor);
+
+        Session::flash('message',"Well done on your hard work. A new member has been added successfully.");
 
         return redirect()->route('network.chart');
     }

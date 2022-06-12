@@ -7,7 +7,7 @@ use App\AccountTransaction;
 use App\Investor;
 use App\Models\InvestorDeposit;
 use App\Models\Withdrawal;
-use Illuminate\Http\Request;
+use App\Services\MyReferrerDetails;
 
 use Auth;
 
@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index(){
+    public function index(MyReferrerDetails $referrerDetails){
         $user = Auth::user();
 
         if($user->user_type == 'investor'){
@@ -25,8 +25,12 @@ class DashboardController extends Controller
             $noticeMessages = $this->getDashboardNotices($user);
             
             $accounts = $this->getInvestorAccounts($user);
+
+            $investor =  $user->investor;
+
+            $referrerDetails = $referrerDetails->details($investor);
             
-            return view('dashboard', compact('noticeMessages', 'accounts'));
+            return view('dashboard', compact('noticeMessages', 'accounts', 'investor', 'referrerDetails'));
         } else {
             $investors = Investor::where('status', 1)->count() ?? 0;
 

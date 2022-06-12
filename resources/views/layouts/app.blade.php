@@ -141,7 +141,7 @@
                 <li class="c-header-nav-item dropdown">
                     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         <div class="c-avatar">
-                            <strong>{{Auth::user()->name}}</strong>
+                            <strong>{{Auth::user()->username}}</strong>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right pt-0">
