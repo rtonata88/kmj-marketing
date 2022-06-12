@@ -86,7 +86,7 @@
                     </svg>
                 </div>
                 <div>
-                    <div class="text-value text-info">0</div>
+                    <div class="text-value text-info">N${{$total_claim_value}}</div>
                     <div class="text-muted text-uppercase font-weight-bold small">Rewards Value</div>
                 </div>
             </div>
@@ -112,8 +112,6 @@
                             <th>Contact number</th>
                             @endif
                             <th>Requested Date</th>
-                            <th>Requested Amount</th>
-                            <th>Charges</th>
                             <th>Total Payout</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -127,8 +125,6 @@
                             <td>{{$withdrawal->investor->mobile_number}}</td>
                             @endif
                             <td>{{$withdrawal->request_date}}</td>
-                            <td>{{$withdrawal->requested_amount}}</td>
-                            <td>{{$withdrawal->charges}}</td>
                             <td>{{$withdrawal->payout_amount}}</td>
                             <td>
                                 @if($withdrawal->status == 'pending')
@@ -165,6 +161,58 @@
                             </td>
                         </tr>
                         @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>Pending claims</strong>
+            </div>
+            <div class="card-body p-3 d-flex align-items-center">
+                <table class="table table-bordered table-striped table-sm" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Investor</th>
+                            <th>Username</th>
+                            <th>Contact number</th>
+                            <th>Reward</th>
+                            <th>Cash (Yes/No)</th>
+                            <th>Payout (N$)</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($pending_claims as $claim)
+                        <tr>
+                            <td>{{$claim->investor->name}}</td>
+                            <td>{{$claim->investor->user->username}}</td>
+                            <td>{{$claim->investor->mobile_number}}</td>
+                            <td>{{$claim->reward->name}}</td>
+                            <td>{{$claim->cash_yn}}</td>
+                            <td>
+                                @if($claim->cash_yn == 'Yes')
+                                {{$claim->payout_amount}}
+                                @else
+                                0.00
+                                @endif
+                            </td>
+                            <td>
+                                @if($claim->status == 'pending')
+                                <span class="badge badge-warning">Pending</span>
+                                @else
+                                <span class="badge badge-success">Processed</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="/admin/reward-claims/{{$claim->id}}/edit"> <span class="fa fa-pencil"></span> Process</a>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

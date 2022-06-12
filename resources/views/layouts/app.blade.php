@@ -50,6 +50,11 @@
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-cash')}}"></use>
                     </svg> Withdraw Requests</a>
             </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/reward-claims">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-sign-language')}}"></use>
+                    </svg> Reward Claims</a>
+            </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/transfer">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-share')}}"></use>
@@ -57,7 +62,7 @@
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/network/chart-view">
                     <svg class="c-sidebar-nav-icon">
-                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-ethernet')}}"></use>
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-graph')}}"></use>
                     </svg>My Network</a>
             </li>
             @endif
@@ -76,6 +81,11 @@
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-share')}}"></use>
                     </svg> Transfers</a>
+            </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/reward-claims">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-sign-language')}}"></use>
+                    </svg> Reward Claims</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/withdrawals">
                     <svg class="c-sidebar-nav-icon">
@@ -132,12 +142,13 @@
                 </svg>
             </button>
             <ul class="c-header-nav ml-auto mr-4">
-
+                @if(Auth::user()->user_type =='investor')
                 <li class="c-header-nav-item dropdown">
                     <a href="{{route('investor.create')}}" class="btn btn-primary">
                         Add Member
                     </a>
                 </li>
+                @endif
                 <li class="c-header-nav-item dropdown">
                     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         <div class="c-avatar">

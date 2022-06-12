@@ -11,7 +11,7 @@
 @endsection
 @section('content')
 <div class="row">
-    <div class="offset-md-2 col-md-6 col-xs-12">
+    <div class="offset-md-1 col-md-8 col-xs-12">
         <div class="card">
             <div class="card-header">
 
@@ -32,6 +32,7 @@
                         <tr>
                             <th>Reward</th>
                             <th>Monetary value (N$)</th>
+                            <th>Cash option?</th>
                             <th>Stage</th>
                             <th>Action</th>
                         </tr>
@@ -40,7 +41,8 @@
                         @foreach($stageRewards as $reward)
                         <tr>
                             <td>{{$reward->name}}</td>
-                            <td>{{$reward->value}}</td>
+                            <td>{{number_format($reward->value, '2', '.', ',')}}</td>
+                            <td>{{$reward->cash_option_yn}}</td>
                             <td>{{$reward->stage->name}}</td>
                             <td>
                                 <a href="/stage-rewards/{{$reward->id}}/edit"> <span class="fa fa-pencil"></span> Edit</a>

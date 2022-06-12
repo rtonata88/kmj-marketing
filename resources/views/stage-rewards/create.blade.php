@@ -37,6 +37,12 @@
                         {{Form::number('value', null, ['class' => 'form-control'])}}
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{Form::label('cash_option_yn', 'Does this reward have a cash option?')}}
+                        {{Form::select('cash_option_yn', ['Yes'=>'Yes', 'No'=>'No'], null, ['class' => 'form-control'])}}
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-success"><span class="fa fa-check-circle"></span> Save</button>
                 <button type="reset" class="btn"><span class="fa fa-ban"></span> Reset</button>
                 {!! Form::close() !!}

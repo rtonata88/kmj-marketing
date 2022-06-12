@@ -33,11 +33,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('other-settings', App\Http\Controllers\OtherSettingController::class);
 
     Route::resource('accounts', App\Http\Controllers\AccountController::class);
+    Route::resource('reward-claims', App\Http\Controllers\RewardClaimController::class);
     Route::resource('transfer', App\Http\Controllers\TransferController::class);
     Route::resource('withdrawals', App\Http\Controllers\WithdrawalController::class);
     Route::resource('investor', App\Http\Controllers\InvestorController::class);
     Route::resource('bank-account', App\Http\Controllers\BankAccountController::class);
     Route::get('/bank-info/{id}', [App\Http\Controllers\BankController::class, 'getBankBranchesByBankId']);
+    Route::get('/admin/reward-claims', [App\Http\Controllers\RewardClaimController::class, 'viewClaims']);
 
     Route::get('/registration-transactions/{investor_id}', [App\Http\Controllers\RegistrationCreditController::class, 'statement']);
     Route::get('/network/chart-view', [App\Http\Controllers\NetworkController::class, 'chartView'])->name('network.chart');

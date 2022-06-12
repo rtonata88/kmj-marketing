@@ -6,6 +6,7 @@ use App\Account;
 use App\AccountTransaction;
 use App\Investor;
 use App\Models\InvestorDeposit;
+use App\Models\RewardClaim;
 use App\Models\Withdrawal;
 use App\Services\MyReferrerDetails;
 
@@ -38,11 +39,17 @@ class DashboardController extends Controller
 
             $withdraws = Withdrawal::all();
 
+            $claims = RewardClaim::with('reward')->get();
+
             $payouts = $withdraws->where('status', 'processed')->sum('payout_amount');
 
+            $total_claim_value = $claims->where('status', 'processed')->sum('value');
+
             $pending_withdraws = $withdraws->where('status', 'pending');
+
+            $pending_claims = $claims->where('status', 'pending');
             
-            return view('admin.dashboard', compact('investors', 'deposits', 'payouts', 'pending_withdraws'));
+            return view('admin.dashboard', compact('investors', 'deposits', 'payouts', 'pending_withdraws', 'total_claim_value', 'pending_claims'));
         }
     }
 
