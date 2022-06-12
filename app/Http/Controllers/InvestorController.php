@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Actions\CreditInvestorProfitAccount;
-use App\Actions\CreditRegistrationAccount;
-use App\Actions\DebitRegistrationAccount;
 use App\Actions\TransferRegistrationCredit;
 use App\Country;
 use App\Investor;
@@ -18,6 +16,8 @@ use App\Services\UpgradeAccountStageService;
 use App\Town;
 use JunaidQadirB\Cray\Traits\RedirectsWithFlash;
 use Illuminate\Routing\Controller;
+
+use Illuminate\Http\Request;
 
 use Auth;
 use Hash;
@@ -115,6 +115,7 @@ class InvestorController extends Controller
     public function show(\App\Investor $investor)
     {
         $previous = $investor->where('id', '<', $investor->id)->max('id');
+
         $next = $investor->where('id', '>', $investor->id)->min('id');
 
         return view('.investors.show', compact('investor'))
@@ -167,5 +168,25 @@ class InvestorController extends Controller
         $investors = Investor::with('user')->paginate(50);
         
         return view('admin.investors.index', compact('investors'));
+    }
+
+    public function showUpdatePassword()
+    {
+        
+        return view('investors.update-password');
+    }
+
+    public function updatePassword(Request $request){
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        
+        $user = Auth::user();
+
+        $user->update(['password' => Hash::make($request->password)]);
+
+        Session::flash('message',"Password successfully updated");
+
+        return view('investors.update-password');
     }
 }

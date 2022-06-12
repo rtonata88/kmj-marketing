@@ -99,6 +99,11 @@
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-user')}}"></use>
                     </svg>Update Info</a>
             </li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/update-password">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-asterisk')}}"></use>
+                    </svg>Update Password</a>
+            </li>
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <svg class="c-sidebar-nav-icon">

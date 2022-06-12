@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/reward-claims/{id}/process', [App\Http\Controllers\RewardClaimController::class, 'viewProcessForm']);
     Route::get('/reward-claims/process/{id}', [App\Http\Controllers\RewardClaimController::class, 'process']);
     Route::get('/withdrawals/cancel/{id}', [App\Http\Controllers\WithdrawalController::class, 'cancel']);
+    Route::get('/update-password', [App\Http\Controllers\InvestorController::class, 'showUpdatePassword']);
+    Route::post('/update-password', [App\Http\Controllers\InvestorController::class, 'updatePassword'])->name('investor.update-password');
 
     Route::get('/registration-transactions/{investor_id}', [App\Http\Controllers\RegistrationCreditController::class, 'statement']);
     Route::get('/network/chart-view', [App\Http\Controllers\NetworkController::class, 'chartView'])->name('network.chart');
