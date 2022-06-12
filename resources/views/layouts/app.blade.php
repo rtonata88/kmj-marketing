@@ -89,6 +89,12 @@
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-user')}}"></use>
                     </svg>Update Info</a>
             </li>
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-account-logout')}}"></use>
+                    </svg> Logout</a>
+            </li>
             @if(Auth::user()->user_type == 'admin')
             <li class="c-sidebar-nav-title">SETTINGS</li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/stages">
