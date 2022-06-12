@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-striped table-sm" style="width:100%; font-size:12px">
+                <table class="table table-bordered table-striped table-sm table-hover" style="width:100%; font-size:12px">
                     <thead>
                         <tr>
                             <th>#</th>

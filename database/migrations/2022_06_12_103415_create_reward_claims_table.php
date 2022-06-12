@@ -21,7 +21,6 @@ class CreateRewardClaimsTable extends Migration
             $table->string('cash_yn')->default('No');
             $table->decimal('bank_charges', 15, 2)->nullable();
             $table->decimal('payout_amount', 15, 2)->nullable();
-            $table->string('cash_yn')->default('No');
             $table->string('status')->default('pending');
             $table->date('process_date')->nullable();
             $table->unsignedBigInteger('processed_by')->nullable();

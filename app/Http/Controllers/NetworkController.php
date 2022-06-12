@@ -12,8 +12,8 @@ class NetworkController extends Controller
     public function chartView(){
         $user = Auth::user();
 
-        $investor = $user->investor;
-
+        $investor = Investor::withDepth()->find($user->investor->id);
+        
         $network = [
             [
                 'id' => $investor->id,
@@ -25,9 +25,10 @@ class NetworkController extends Controller
         $last_id = 0;
 
         $descendants = $investor->descendants()->with('stage')->withDepth()->get();
-
+        
         foreach ($descendants as $descendant) {
-            //if (($descendant->depth  - $investor->depth) <= 2) {
+            
+            if (($descendant->depth  - $investor->depth) <= 2) {
                 array_push($network, [
                     'id' => $descendant->id,
                     'pid' => $descendant->parent_id,
@@ -37,7 +38,7 @@ class NetworkController extends Controller
 
                 $last_parent = $descendant->parent_id;
                 $last_id = $descendant->id;
-            //}
+            }
         }
         //dd($network);
         $network = json_encode($network);
@@ -47,7 +48,7 @@ class NetworkController extends Controller
 
     public function showNetwork($id){
 
-        $investor = Investor::find($id);
+        $investor = Investor::withDepth()->find($id);
 
         $network = [
             [
@@ -62,7 +63,7 @@ class NetworkController extends Controller
         $descendants = $investor->descendants()->with('stage')->withDepth()->get();
 
         foreach ($descendants as $descendant) {
-            //if (($descendant->depth  - $investor->depth) <= 2) {
+            if (($descendant->depth  - $investor->depth) <= 2) {
                 array_push($network, [
                     'id' => $descendant->id,
                     'pid' => $descendant->parent_id,
@@ -72,7 +73,7 @@ class NetworkController extends Controller
 
                 $last_parent = $descendant->parent_id;
                 $last_id = $descendant->id;
-            //}
+            }
         }
         //dd($network);
         $network = json_encode($network);
