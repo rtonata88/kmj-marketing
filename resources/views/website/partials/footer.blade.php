@@ -114,6 +114,9 @@
                             <strong>CEO </strong>:0812146522
                         </li>
                         <li>
+                            <strong>Chief Finance </strong>:0814509050
+                        </li>
+                        <li>
                             <strong>Director </strong>: +264813270589
                         </li>
                         <li>

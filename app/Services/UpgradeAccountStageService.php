@@ -66,8 +66,9 @@ class UpgradeAccountStageService {
                                                         ->where('descendant_id', $child->id)
                                                         ->where('stage_id', $ancestor->stage_id)
                                                         ->first();
-
+               
                 if (!$account_transaction) {
+
                     AccountTransaction::create([
                         'investor_id' =>  $ancestor->id,
                         'transaction_description' => "Stage " . $ancestor->stage_id . " Earning",

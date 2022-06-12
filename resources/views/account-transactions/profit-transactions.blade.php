@@ -37,7 +37,7 @@
                     ?>
                     <tr>
                         <td>{{$transaction->transaction_date}}</td>
-                        <td>{{$transaction->transaction_description}}</td>
+                        <td>{{$transaction->transaction_description}} ({{ $transaction->descendant_id }})</td>
                         <td>{{number_format($transaction->debit_amount, 2, '.',',')}}</td>
                         <td>{{number_format($transaction->credit_amount, 2, '.',',')}}</td>
                         <td>{{number_format($balance, 2, '.',',')}}</td>
