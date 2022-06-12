@@ -26,33 +26,46 @@
             <div class="card-body">
                 <div class="col-md-12">
                     <div class="form-group">
+                        {{Form::label('investor', 'Username')}}
+                        {{Form::number('investor', $investor->user->username, ['class' => 'form-control', 'readonly'])}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{Form::label('investor', 'Name')}}
+                        {{Form::number('investor', $investor->name, ['class' => 'form-control', 'readonly'])}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
                         {{Form::label('reward', 'Reward')}}
-                        {{Form::number('reward', $claim->reward->name, ['class' => 'form-control', 'readonly'])}}
+                        {{Form::text('reward', $claim->reward->name, ['class' => 'form-control', 'readonly'])}}
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        {{Form::label('payout_method', 'Payout Method')}}
-                        {{Form::text('payout_method', $withdrawal->payout_method->name, ['class' => 'form-control', 'readonly'])}}
+                        {{Form::label('cash_yn', 'Cash (Yes/No)')}}
+                        {{Form::text('cash_yn', $claim->cash_yn, ['class' => 'form-control', 'readonly'])}}
                     </div>
                 </div>
-
+                @if($claim->cash_yn == 'Yes')
                 <div class="col-md-12">
                     <div class="form-group">
-                        {{Form::label('bank_charges', 'Bank Charges')}}
-                        {{Form::text('bank_charges', $withdrawal->charges, ['class' => 'form-control', 'readonly'])}}
+                        {{Form::label('bank_charges', 'Bank Charges')}} (N$)
+                        {{Form::text('bank_charges', ($claim->reward->value - $claim->payout_amount), ['class' => 'form-control', 'readonly'])}}
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         {{Form::label('payout_amount', 'Payout Amount (N$)')}}
-                        {{Form::text('payout_amount', $withdrawal->payout_amount, ['class' => 'form-control', 'readonly', 'id' => 'payout-amount'])}}
+                        {{Form::text('payout_amount', $claim->payout_amount, ['class' => 'form-control', 'readonly', 'id' => 'payout-amount'])}}
                     </div>
                 </div>
-
+                @endif
                 <hr>
+                @if($claim->cash_yn == 'Yes')
                 <div class="col-md-12">
                     <div class="form-group">
                         <strong>{{Form::label('bank_account', 'Bank Account Information')}}</strong>
@@ -84,10 +97,11 @@
                         </table>
                     </div>
                 </div>
-                @if(Auth::user()->user_type == 'admin')
-                <a href="/withdrawals/process/{{$withdrawal->id}}" class="btn btn-success"><span class=" fa fa-check-circle"></span> Process</a>
                 @endif
-                <a href="/withdrawals" class="btn"> Cancel</a>
+                @if(Auth::user()->user_type == 'admin')
+                <a href="/reward-claims/process/{{$claim->id}}" class="btn btn-success"><span class=" fa fa-check-circle"></span> Process</a>
+                @endif
+                <a href="/admin/reward-claims" class="btn"> Cancel</a>
             </div>
         </div>
     </div>

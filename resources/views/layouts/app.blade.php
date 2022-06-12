@@ -70,7 +70,7 @@
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/registrations">
                     <svg class="c-sidebar-nav-icon">
                         <use xlink:href="{{asset('new/node_modules/@coreui/icons/sprites/free.svg#cil-group')}}"></use>
-                    </svg> Registrations</a>
+                    </svg> Members</a>
             </li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/deposits">
                     <svg class="c-sidebar-nav-icon">

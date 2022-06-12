@@ -43,7 +43,7 @@ class DashboardController extends Controller
 
             $payouts = $withdraws->where('status', 'processed')->sum('payout_amount');
 
-            $total_claim_value = $claims->where('status', 'processed')->sum('value');
+            $total_claim_value = $this->calculateTotalRewardValues($claims);
 
             $pending_withdraws = $withdraws->where('status', 'pending');
 
@@ -51,6 +51,17 @@ class DashboardController extends Controller
             
             return view('admin.dashboard', compact('investors', 'deposits', 'payouts', 'pending_withdraws', 'total_claim_value', 'pending_claims'));
         }
+    }
+
+    private function calculateTotalRewardValues($claims){
+        
+        $value = 0;
+
+        foreach($claims->where('status', 'processed') as $claim){
+            $value += $claim->reward->value;
+        }
+
+        return  $value;
     }
 
     private function getInvestorAccounts($user): array{

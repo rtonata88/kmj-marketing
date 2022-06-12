@@ -26,10 +26,10 @@
                 </div>
                 <div>
                     <div class="text-value text-primary">{{$investors}}</div>
-                    <div class="text-muted text-uppercase font-weight-bold small">Total registrations</div>
+                    <div class="text-muted text-uppercase font-weight-bold small">Total members</div>
                 </div>
             </div>
-            <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="/admin/investors"><span class="small font-weight-bold">Show list</span>
+            <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="/registrations"><span class="small font-weight-bold">Show list</span>
                     <svg class="c-icon">
                         <use xlink:href="#cil-chevron-right"></use>
                     </svg></a>
@@ -86,11 +86,11 @@
                     </svg>
                 </div>
                 <div>
-                    <div class="text-value text-info">N${{$total_claim_value}}</div>
+                    <div class="text-value text-info">N${{number_format($total_claim_value, 2, '.', ',')}}</div>
                     <div class="text-muted text-uppercase font-weight-bold small">Rewards Value</div>
                 </div>
             </div>
-            <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="/admin/rewards"><span class="small font-weight-bold">View More</span>
+            <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="/admin/reward-claims"><span class="small font-weight-bold">View More</span>
                     <svg class="c-icon">
                         <use xlink:href="#cil-chevron-right"></use>
                     </svg></a></div>
@@ -108,7 +108,7 @@
                     <thead>
                         <tr>
                             @if(Auth::user()->user_type == 'admin')
-                            <th>Name</th>
+                            <th>Usename</th>
                             <th>Contact number</th>
                             @endif
                             <th>Requested Date</th>
@@ -121,7 +121,7 @@
                         @forelse($pending_withdraws as $withdrawal)
                         <tr>
                             @if(Auth::user()->user_type == 'admin')
-                            <td>{{$withdrawal->investor->name}}</td>
+                            <td>{{$withdrawal->investor->user->username}}</td>
                             <td>{{$withdrawal->investor->mobile_number}}</td>
                             @endif
                             <td>{{$withdrawal->request_date}}</td>
@@ -187,7 +187,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($pending_claims as $claim)
+                        @forelse($pending_claims as $claim)
                         <tr>
                             <td>{{$claim->investor->name}}</td>
                             <td>{{$claim->investor->user->username}}</td>
@@ -209,10 +209,14 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="/admin/reward-claims/{{$claim->id}}/edit"> <span class="fa fa-pencil"></span> Process</a>
+                                <a href="/admin/reward-claims/{{$claim->id}}/process"> Process</a>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="8">You do not have any pending claims</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

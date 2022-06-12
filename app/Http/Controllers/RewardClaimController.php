@@ -71,4 +71,25 @@ class RewardClaimController extends Controller
 
         return view('admin.claims.index', compact('claims'));
     }
+
+    public function viewProcessForm($id){
+        $claim = RewardClaim::with('investor', 'reward')->where('id', $id)->first();
+
+        $investor = $claim->investor;
+
+        return view('admin.claims.process', compact('claim', 'investor'));
+    }
+
+    public function process($id){
+        $claim = RewardClaim::find($id);
+
+        $claim->process_date = date('Y-m-d');
+        $claim->status = 'processed';
+        $claim->processed_by = Auth::user()->id;
+        $claim->save();
+
+        Session::flash('message', 'Claim processed successfully');
+
+        return redirect()->route('admin.index.claims');
+    }
 }

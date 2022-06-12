@@ -39,7 +39,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('investor', App\Http\Controllers\InvestorController::class);
     Route::resource('bank-account', App\Http\Controllers\BankAccountController::class);
     Route::get('/bank-info/{id}', [App\Http\Controllers\BankController::class, 'getBankBranchesByBankId']);
-    Route::get('/admin/reward-claims', [App\Http\Controllers\RewardClaimController::class, 'viewClaims']);
+    Route::get('/admin/reward-claims', [App\Http\Controllers\RewardClaimController::class, 'viewClaims'])->name('admin.index.claims');
+    Route::get('/admin/reward-claims/{id}/process', [App\Http\Controllers\RewardClaimController::class, 'viewProcessForm']);
+    Route::get('/reward-claims/process/{id}', [App\Http\Controllers\RewardClaimController::class, 'process']);
 
     Route::get('/registration-transactions/{investor_id}', [App\Http\Controllers\RegistrationCreditController::class, 'statement']);
     Route::get('/network/chart-view', [App\Http\Controllers\NetworkController::class, 'chartView'])->name('network.chart');

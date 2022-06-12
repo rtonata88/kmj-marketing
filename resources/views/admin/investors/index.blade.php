@@ -25,8 +25,8 @@
                     <thead>
                         <tr>
                             <th>Investor Name</th>
+                            <th>Username</th>
                             <th>Contact number</th>
-                            <th>Total sign ups</th>
                             <th>Current Stage</th>
                         </tr>
                     </thead>
@@ -34,8 +34,8 @@
                         @foreach($investors as $investor)
                         <tr>
                             <td>{{$investor->name}}</td>
+                            <td>{{$investor->user->username}}</td>
                             <td>{{$investor->mobile_number}}</td>
-                            <td>{{$investor->children->count()}}</td>
                             <td>Stage {{$investor->stage_id}}</td>
                         </tr>
                         @endforeach

@@ -60,7 +60,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="/admin/reward-claims/{{$claim->id}}/edit"> <span class="fa fa-pencil"></span> Process</a>
+                                <a href="/admin/reward-claims/{{$claim->id}}/process"> <span class="fa fa-pencil"></span> Process</a>
                             </td>
                         </tr>
                         @endforeach

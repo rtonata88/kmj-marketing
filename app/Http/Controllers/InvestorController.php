@@ -164,7 +164,7 @@ class InvestorController extends Controller
 
     public function registrations()
     {
-        $investors = Investor::paginate(50);
+        $investors = Investor::with('user')->paginate(50);
         
         return view('admin.investors.index', compact('investors'));
     }
