@@ -24,7 +24,6 @@ class CreateRewardClaimsTable extends Migration
             $table->string('status')->default('pending');
             $table->date('process_date')->nullable();
             $table->unsignedBigInteger('processed_by')->nullable();
-
             $table->foreign('stage_reward_id')->references('id')->on('stage_rewards');
             $table->foreign('investor_id')->references('id')->on('investors');
             $table->foreign('processed_by')->references('id')->on('users');
