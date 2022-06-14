@@ -74,7 +74,9 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         {{Form::label('username', 'Username')}}
-                        {{Form::text('username', null, ['class' => 'form-control', 'placeholder' => 'Username'])}}
+                        {{Form::text('username', null, ['class' => 'form-control', 'placeholder' => 'Username', 'id' => 'username'])}}
+                        <div id="username-available" class="text-success d-none"> <strong>The username is available </strong></div>
+                        <div id="username-taken" class="text-danger d-none"> <strong>Username is already taken </strong></div>
                         <input type="hidden" name="password" value="Wealth@2022" class="form--control" placeholder="Password" />
                         <input type="hidden" name="password_confirmation" value="Wealth@2022" class="form--control" placeholder="Re-type password" />
                         <span>The default password is: <strong>Wealth@2022</strong></span>
@@ -86,4 +88,40 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+
+            let usernameAvailable = document.getElementById('username-available');
+            let usernameTaken = document.getElementById('username-taken');
+
+            $('#username').change(function(e){
+                event.preventDefault();
+                var username = $('#username').val();
+
+                $.ajax({
+                    url: "{{ route('validate.username') }}",
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        'username': username
+                    },
+                    success: function (data) {
+
+                        if(data.successfailure == true){
+                            usernameAvailable.classList.remove("d-none");
+                            usernameTaken.classList.add("d-none");
+                        } else {
+                            usernameAvailable.classList.add("d-none");
+                            usernameTaken.classList.remove("d-none");
+                        }
+                    },
+                });
+            })
+        })
+
+    </script>
+
     @endsection

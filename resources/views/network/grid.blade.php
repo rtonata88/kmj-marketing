@@ -34,7 +34,7 @@
                             <td>{{$index + 1}}</td>
                             <td>{{$descendant->user->username}}</td>
                             <td>{{$descendant->stage->name}}</td>
-                            <td> <a href="/child-network/{{ $descendant->id }}">Show Network</a> </td>
+                        <td> <a href="/child-network/{{ $descendant->id }}">Show Network</a> </td>
                         </tr>
                         @empty
                         <tr>

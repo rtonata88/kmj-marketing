@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/network/chart-view', [App\Http\Controllers\NetworkController::class, 'chartView'])->name('network.chart');
     Route::get('/network/grid-view', [App\Http\Controllers\NetworkController::class, 'gridView']);
     Route::get('/child-network/{id}', [App\Http\Controllers\NetworkController::class, 'showNetwork']);
+    Route::post('/child-network/validate-username', [App\Http\Controllers\NetworkController::class, 'validateUsername'])->name('validate.username');
 
     Route::get('/transactions', [App\Http\Controllers\AccountTransactionController::class, 'index'])->name('transactions');
 });

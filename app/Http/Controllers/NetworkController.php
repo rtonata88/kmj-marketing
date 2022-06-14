@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Investor;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 use Auth;
 
@@ -79,6 +80,25 @@ class NetworkController extends Controller
         $network = json_encode($network);
 
         return view('network.child-network', compact('network'));
+    }
+
+    public function validateUsername(Request $request){
+
+        $username = User::where('username', $request->username)->first();
+
+        if($username != null){
+
+            $data = [
+                'successfailure' => false,
+            ];
+            return response()->json($data);
+        }else{
+
+            $data = [
+                'successfailure' => true,
+            ];
+            return response()->json($data);
+        }
     }
 
     public function gridView(){
