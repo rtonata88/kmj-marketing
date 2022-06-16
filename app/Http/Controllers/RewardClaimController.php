@@ -66,7 +66,7 @@ class RewardClaimController extends Controller
 
                 if($bank_account != null){
 
-                    $this->saveClaim($request);
+                    $this->saveClaim($request, $payout_methods);
                     return redirect()->back();
 
                 }else{
@@ -79,7 +79,7 @@ class RewardClaimController extends Controller
 
                 if($investor->mobile_number != 0){
 
-                    $this->saveClaim($request);
+                    $this->saveClaim($request, $payout_methods);
                     return redirect()->back();
 
                 }else{
@@ -90,12 +90,12 @@ class RewardClaimController extends Controller
 
         }else{
 
-            $this->saveClaim($request);
+            $this->saveClaim($request, $payout_methods);
             return redirect()->back();
         }
     }
 
-    public function saveClaim(Request $request){
+    public function saveClaim(Request $request, $payout_method){
 
         RewardClaim::create([
             'investor_id' => $request->investor_id,
@@ -104,19 +104,11 @@ class RewardClaimController extends Controller
             'cash_yn' => (isset($request->cash_yn)) ? $request->cash_yn : 'No',
             'bank_charges' => (isset($request->bank_charges)) ? $request->bank_charges : 0,
             'payout_amount' => (isset($request->payout_amount)) ? $request->payout_amount : 0,
+            'payment_method' => (isset($payout_method->name)) ? $payout_method->name : null,
         ]);
 
         Session::flash('message', 'Your claim has been submitted.');
     }
-
-    // public function validateMethod(Request $request){
-
-    //     $payout_methods = PayoutMethod::find($request->payoutMehod);
-
-    //     if($payout_methods->name = 'Bank'){
-
-    //     }
-    // }
 
     public function viewClaims(){
         $claims = RewardClaim::with('investor', 'reward')->paginate(25);
