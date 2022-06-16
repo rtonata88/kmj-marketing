@@ -28,7 +28,7 @@ class RewardClaimController extends Controller
                                             ->first();
 
         $descendants = $investor->descendants()->withDepth()->where('stage_id',$investor->stage_id)->get();
-        
+
         $people = 0;
 
         foreach($descendants as $descendant){
@@ -42,7 +42,7 @@ class RewardClaimController extends Controller
 
         if($people >= $stageRequirement->people){
             array_push($stages, $investor->stage_id);
-        } 
+        }
 
         $claims = RewardClaim::where('investor_id',$investor->id)->pluck('stage_reward_id');
 
@@ -73,9 +73,11 @@ class RewardClaimController extends Controller
     }
 
     public function viewProcessForm($id){
+
         $claim = RewardClaim::with('investor', 'reward')->where('id', $id)->first();
 
         $investor = $claim->investor;
+
 
         return view('admin.claims.process', compact('claim', 'investor'));
     }
