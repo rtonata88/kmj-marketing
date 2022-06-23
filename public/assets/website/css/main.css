@@ -975,7 +975,6 @@ img {
 
 .header {
   position: fixed;
-  top: 55px;
   width: 100%;
   z-index: 999;
   -webkit-transition: all ease .4s;
