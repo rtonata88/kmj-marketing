@@ -60,7 +60,9 @@
                                 @endif
                             </td>
                             <td>
+                                @if($claim->status == 'pending')
                                 <a href="/admin/reward-claims/{{$claim->id}}/process"> <span class="fa fa-pencil"></span> Process</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

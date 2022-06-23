@@ -42,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/reward-claims', [App\Http\Controllers\RewardClaimController::class, 'viewClaims'])->name('admin.index.claims');
     Route::get('/admin/reward-claims/{id}/process', [App\Http\Controllers\RewardClaimController::class, 'viewProcessForm']);
     Route::get('/reward-claims/process/{id}', [App\Http\Controllers\RewardClaimController::class, 'process']);
+    Route::post('/reward-claims/validate-method', [App\Http\Controllers\RewardClaimController::class, 'validateMethod'])->name('validate.method');
+
     Route::get('/withdrawals/cancel/{id}', [App\Http\Controllers\WithdrawalController::class, 'cancel']);
     Route::get('/update-password', [App\Http\Controllers\InvestorController::class, 'showUpdatePassword']);
     Route::post('/update-password', [App\Http\Controllers\InvestorController::class, 'updatePassword'])->name('investor.update-password');

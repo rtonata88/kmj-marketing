@@ -27,13 +27,13 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         {{Form::label('investor', 'Username')}}
-                        {{Form::number('investor', $investor->user->username, ['class' => 'form-control', 'readonly'])}}
+                        {{Form::text('investor', $investor->user->username, ['class' => 'form-control', 'readonly'])}}
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         {{Form::label('investor', 'Name')}}
-                        {{Form::number('investor', $investor->name, ['class' => 'form-control', 'readonly'])}}
+                        {{Form::text('investor', $investor->name, ['class' => 'form-control', 'readonly'])}}
                     </div>
                 </div>
                 <div class="col-md-12">
