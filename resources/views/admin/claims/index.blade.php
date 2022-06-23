@@ -59,15 +59,11 @@
                                 <span class="badge badge-success">Processed</span>
                                 @endif
                             </td>
-                            @if($claim->status == 'processed')
-                                <td>
-                                    <a href="/admin/reward-claims/{{$claim->id}}/process" style="pointer-events: none"> <span class="fa fa-pencil"></span> Process</a>
-                                </td>
-                            @else
-                                <td>
-                                    <a href="/admin/reward-claims/{{$claim->id}}/process"> <span class="fa fa-pencil"></span> Process</a>
-                                </td>
-                            @endif
+                            <td>
+                                @if($claim->status == 'pending')
+                                <a href="/admin/reward-claims/{{$claim->id}}/process"> <span class="fa fa-pencil"></span> Process</a>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
