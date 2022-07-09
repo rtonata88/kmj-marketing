@@ -57,7 +57,7 @@ class UpgradeAccountStageService {
 
         $stageRequirement = $stageRequirement->where('stage_id', $ancestor->stage_id)->first();
 
-        $children = $ancestor->descendants()->withDepth()->where('stage_id', $ancestor->stage_id)->get();
+        $children = $ancestor->descendants()->withDepth()->where('stage_id', '>=' ,$ancestor->stage_id)->get();
         
         foreach ($children as $child) {
             

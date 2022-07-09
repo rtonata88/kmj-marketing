@@ -41,7 +41,7 @@ class CreditInvestorProfitAccount {
             } else {
                 $descendants = $ancestor->descendants();
 
-                $children = $descendants->withDepth()->where('stage_id', $ancestor->stage_id)->get();
+                $children = $descendants->withDepth()->where('stage_id', '>=', $ancestor->stage_id)->get();
                 
                 foreach($children as $child){
                     if (($child->depth  - $ancestor->depth) <= 2) {
