@@ -29,7 +29,7 @@ class NetworkController extends Controller
         
         foreach ($descendants as $descendant) {
             
-            //if (($descendant->depth  - $investor->depth) <= 2) {
+            if (($descendant->depth  - $investor->depth) <= 2) {
                 array_push($network, [
                     'id' => $descendant->id,
                     'pid' => $descendant->parent_id,
@@ -39,7 +39,7 @@ class NetworkController extends Controller
 
                 $last_parent = $descendant->parent_id;
                 $last_id = $descendant->id;
-            //}
+            }
         }
         $network = json_encode($network);
         //dd($network);
