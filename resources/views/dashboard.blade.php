@@ -126,7 +126,7 @@
                 <table class="table table-bordered table-sm">
                     <tr>
                         <th style="background-color: rgba(227, 227, 227, 0.5);width:250px;">Referrer username </th>
-                        <td>{{$referrerDetails->user->username}}</td>
+                        <td>{{$referrerDetails->user->username ?? ''}}</td>
                     </tr>
                     <tr>
                         <th style="background-color: rgba(227, 227, 227, 0.5);width:250px;">Name </th>

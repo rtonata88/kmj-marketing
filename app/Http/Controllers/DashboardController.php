@@ -24,13 +24,13 @@ class DashboardController extends Controller
         if($user->user_type == 'investor'){
 
             $noticeMessages = $this->getDashboardNotices($user);
-            
+
             $accounts = $this->getInvestorAccounts($user);
 
             $investor =  $user->investor;
 
             $referrerDetails = $referrerDetails->details($investor);
-            
+
             return view('dashboard', compact('noticeMessages', 'accounts', 'investor', 'referrerDetails'));
         } else {
             $investors = Investor::where('status', 1)->count() ?? 0;
@@ -48,13 +48,13 @@ class DashboardController extends Controller
             $pending_withdraws = $withdraws->where('status', 'pending');
 
             $pending_claims = $claims->where('status', 'pending');
-            
+
             return view('admin.dashboard', compact('investors', 'deposits', 'payouts', 'pending_withdraws', 'total_claim_value', 'pending_claims'));
         }
     }
 
     private function calculateTotalRewardValues($claims){
-        
+
         $value = 0;
 
         foreach($claims->where('status', 'processed') as $claim){

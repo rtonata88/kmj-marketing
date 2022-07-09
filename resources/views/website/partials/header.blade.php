@@ -43,7 +43,7 @@
                 <div class="header-area">
                     <div class="logo">
                         <a href="/">
-                            <img src="{{asset('assets/website/images/logo.png')}}" alt="logo">
+                            <img src="{{asset('assets/website/images/logo_.png')}}" alt="logo">
                         </a>
                     </div>
                     <div class="header-trigger d-block d-lg-none">

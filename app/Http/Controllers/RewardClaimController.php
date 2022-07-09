@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Investor;
+use App\Models\BankAccount;
+use App\Models\PayoutMethod;
 use App\Models\RewardClaim;
 use App\OtherSetting;
 use App\StageRequirement;
@@ -28,7 +30,7 @@ class RewardClaimController extends Controller
                                             ->first();
 
         $descendants = $investor->descendants()->withDepth()->where('stage_id',$investor->stage_id)->get();
-        
+
         $people = 0;
 
         foreach($descendants as $descendant){
@@ -42,16 +44,59 @@ class RewardClaimController extends Controller
 
         if($people >= $stageRequirement->people){
             array_push($stages, $investor->stage_id);
-        } 
+        }
 
         $claims = RewardClaim::where('investor_id',$investor->id)->pluck('stage_reward_id');
 
         $rewards = StageReward::whereIn('stage_id', $stages)->whereNotIn('id', $claims)->get();
 
-        return view('reward-claims.index', compact('rewards', 'bank_charges_percentage', 'investor'));
+        $payout_methods = PayoutMethod::pluck('name', 'id');
+
+        return view('reward-claims.index', compact('rewards', 'bank_charges_percentage', 'investor', 'payout_methods'));
     }
 
     public function store(Request $request){
+
+        $payout_methods = PayoutMethod::find($request->payout_method);
+
+        if($payout_methods != null){
+            if($payout_methods->name == 'Bank'){
+
+                $bank_account = BankAccount::where('investor_id', $request->investor_id)->first();
+
+                if($bank_account != null){
+
+                    $this->saveClaim($request, $payout_methods);
+                    return redirect()->back();
+
+                }else{
+
+                    return back()->with('bankInfoFailure', 'Please update your bank information to continue with the claim');
+                }
+            }else{
+
+                $investor = Investor::where('id', $request->investor_id)->first();
+
+                if($investor->mobile_number != 0){
+
+                    $this->saveClaim($request, $payout_methods);
+                    return redirect()->back();
+
+                }else{
+
+                    return back()->with('celphoneInfoFailure', 'Please update your cellphone number to continue with the claim');
+                }
+            }
+
+        }else{
+
+            $this->saveClaim($request, $payout_methods);
+            return redirect()->back();
+        }
+    }
+
+    public function saveClaim(Request $request, $payout_method){
+
         RewardClaim::create([
             'investor_id' => $request->investor_id,
             'request_date' => date('Y-m-d'),
@@ -59,11 +104,10 @@ class RewardClaimController extends Controller
             'cash_yn' => (isset($request->cash_yn)) ? $request->cash_yn : 'No',
             'bank_charges' => (isset($request->bank_charges)) ? $request->bank_charges : 0,
             'payout_amount' => (isset($request->payout_amount)) ? $request->payout_amount : 0,
+            'payment_method' => (isset($payout_method->name)) ? $payout_method->name : null,
         ]);
 
         Session::flash('message', 'Your claim has been submitted.');
-
-        return redirect()->back();
     }
 
     public function viewClaims(){
@@ -73,9 +117,11 @@ class RewardClaimController extends Controller
     }
 
     public function viewProcessForm($id){
+
         $claim = RewardClaim::with('investor', 'reward')->where('id', $id)->first();
 
         $investor = $claim->investor;
+
 
         return view('admin.claims.process', compact('claim', 'investor'));
     }

@@ -45,7 +45,7 @@ class WithdrawalController extends Controller
         $payout_methods = PayoutMethod::pluck('name', 'id');
 
         $account_balance = $this->calculateAccountBalance($user->investor);
-        
+
         $minimum_account_balance = $settings->where('label', '=', 'Minimum Account Balance')->first()->value;
 
         $withdrawal_mini_balance = $settings->where('label', '=', 'Withdrawal Minimum Balance')->first()->value;
@@ -57,9 +57,9 @@ class WithdrawalController extends Controller
 
             return redirect()->back();
         }
-        
+
         $bank_charges_percentage = $settings->where('label', '=', 'Withdrawal Commission %')->first()->value;
-        
+
         return view('withdrawals.create', compact('payout_methods', 'account_balance', 'maximum_request_amount', 'bank_charges_percentage'));
     }
 
@@ -97,7 +97,7 @@ class WithdrawalController extends Controller
 
             return redirect()->back();
         }
-        
+
         $user = Auth::user();
 
         Withdrawal::create([
