@@ -11,4 +11,8 @@ class AccountTransaction extends Model
 
     protected $guarded = [ 'id' ];
     //
+
+    public function investor(){
+        return $this->belongsTo(Investor::class, 'descendant_id', 'id');
+    }
 }

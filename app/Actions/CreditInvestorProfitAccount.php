@@ -39,27 +39,31 @@ class CreditInvestorProfitAccount {
                     }
                 }
             } else {
-                $descendants = $ancestor->descendants;
+                $descendants = $ancestor->descendants();
 
-                $children = $descendants->where('stage_id', $ancestor->stage_id);
+                $children = $descendants->withDepth()->where('stage_id', $ancestor->stage_id)->get();
                 
                 foreach($children as $child){
-                    
-                    $account_transaction = AccountTransaction::where('investor_id', $ancestor->id)
-                                        ->where('descendant_id', $child->id)
-                                        ->where('stage_id', $ancestor->stage_id)
-                                        ->first();
+                    if (($child->depth  - $ancestor->depth) <= 2) {
+                        
+                        //echo $ancestor->name . " - " . $ancestor->depth . " => ". $child->name . " - ". $child->depth . "<br>";
 
-                    if(!$account_transaction){
-                        AccountTransaction::create([
-                            'investor_id' =>  $ancestor->id,
-                            'transaction_description' => "Stage ". $ancestor->stage_id . " Earning",
-                            'descendant_id' => $child->id,
-                            'stage_id' =>  $ancestor->stage_id,
-                            'transaction_date' => date('Y-m-d'),
-                            'debit_amount' => 0,
-                            'credit_amount' => $stageRequirement->amount
-                        ]);
+                        $account_transaction = AccountTransaction::where('investor_id', $ancestor->id)
+                                            ->where('descendant_id', $child->id)
+                                            ->where('stage_id', $ancestor->stage_id)
+                                            ->first();
+
+                        if(!$account_transaction){
+                            AccountTransaction::create([
+                                'investor_id' =>  $ancestor->id,
+                                'transaction_description' => "Stage ". $ancestor->stage_id . " Earning",
+                                'descendant_id' => $child->id,
+                                'stage_id' =>  $ancestor->stage_id,
+                                'transaction_date' => date('Y-m-d'),
+                                'debit_amount' => 0,
+                                'credit_amount' => $stageRequirement->amount
+                            ]);
+                        }
                     }
                 }
             }
