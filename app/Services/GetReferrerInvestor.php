@@ -15,9 +15,13 @@ class GetReferrerInvestor {
         $children = collect();
         if($investor->descendants->count() > 1){
             if($investor->children()->count() == 2){
-                foreach ($investor->descendants as $descendant) {
+                foreach ($investor->descendants()->defaultOrder()->get() as $descendant) {
                     if ($descendant->children->count() < 2) {
-                        $children->push(['investor' => $descendant, 'ancestors' => $descendant->ancestors->count()]);
+                        $children->push([
+                            'investor' => $descendant, 
+                            'ancestors' => $descendant->ancestors->count(),
+                            'id' => $descendant->id
+                        ]);
                     }
                 }
             } else {
@@ -28,6 +32,6 @@ class GetReferrerInvestor {
             $children->push(['investor' => $investor, 'ancestors' => $investor->ancestors->count()]);
         }
 
-        return $children->sortBy('ancestors')->first();
+        return $children->sortBy('ancestors')->sortBy('id')->first();
     }
 }

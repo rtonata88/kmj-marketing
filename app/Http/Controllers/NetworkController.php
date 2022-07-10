@@ -41,8 +41,8 @@ class NetworkController extends Controller
                 $last_id = $descendant->id;
             }
         }
+
         $network = json_encode($network);
-        //dd($network);
 
         return view('network.chart', compact('network'));
     }
