@@ -111,7 +111,9 @@ class RewardClaimController extends Controller
     }
 
     public function viewClaims(){
-        $claims = RewardClaim::with('investor', 'reward')->paginate(25);
+        $claims = RewardClaim::with('investor', 'reward')
+                            ->where('status', 'pending')
+                            ->paginate(25);
 
         return view('admin.claims.index', compact('claims'));
     }
