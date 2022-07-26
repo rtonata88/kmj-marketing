@@ -25,7 +25,7 @@ class WithdrawalController extends Controller
         if($user->user_type == 'investor'){
             $withdrawals = Withdrawal::where('investor_id', $user->investor->id)->paginate(25);
         } else {
-            $withdrawals = Withdrawal::where('status','<>','canceled')->paginate(25);
+            $withdrawals = Withdrawal::where('status','=', 'processed')->paginate(25);
         }
 
         return view('withdrawals.index', compact('withdrawals'));
